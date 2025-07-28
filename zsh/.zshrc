@@ -119,7 +119,7 @@ alias ll="eza --long --git"
 alias chead='f() { curl -sSD - $1 -o /dev/null };f'
 alias cheadf='f() { curl -sSLD - $1 -o /dev/null };f'
 
-[[ -s "/Users/jake/.gvm/scripts/gvm" ]] && source "/Users/jake/.gvm/scripts/gvm"
+[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
 eval "$(saml2aws --completion-script-zsh)"
 
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
@@ -206,7 +206,7 @@ if command -v ngrok &>/dev/null; then
 fi
 
 # bun completions
-[ -s "/Users/jake/.bun/_bun" ] && source "/Users/jake/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
@@ -214,4 +214,4 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 alias bedrock="source ~/bedrock_claude.sh"
 
-alias claude="/Users/jake/.claude/local/claude"
+alias claude="$HOME/.claude/local/claude"
