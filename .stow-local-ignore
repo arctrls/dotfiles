@@ -1,0 +1,29 @@
+# Ignore common files that shouldn't be symlinked
+\.git
+\.gitignore
+\.gitmodules
+README\.md
+LICENSE
+\.DS_Store
+\.vscode
+\.idea
+
+# Backup files
+.*\.bak
+.*\.backup
+.*~
+\#.*\#
+
+# Temporary files
+\.tmp
+\.temp
+.*\.log
+
+# OS specific files
+Thumbs\.db
+desktop\.ini
+
+# Package manager files
+node_modules
+\.npm
+\.yarn
