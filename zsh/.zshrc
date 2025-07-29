@@ -115,7 +115,7 @@ eval "$(jenv init -)"
 # neovim
 alias vi="nvim"
 alias vim="nvim"
-alias ll="eza --long --git"
+alias ll="eza --long --git --all"
 alias chead='f() { curl -sSD - $1 -o /dev/null };f'
 alias cheadf='f() { curl -sSLD - $1 -o /dev/null };f'
 
