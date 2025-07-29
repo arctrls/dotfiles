@@ -104,10 +104,8 @@ source $ZSH/oh-my-zsh.sh
 alias convmv-nfc='convmv -f utf-8 -t utf-8 --nfc --notest'
 
 # nvm
-export NVM_DIR="$HOME/.nvm"
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-	
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 # jenv
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
@@ -120,7 +118,6 @@ alias chead='f() { curl -sSD - $1 -o /dev/null };f'
 alias cheadf='f() { curl -sSLD - $1 -o /dev/null };f'
 
 [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
-eval "$(saml2aws --completion-script-zsh)"
 
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
 
@@ -145,8 +142,6 @@ _fzf_compgen_dir() {
   fd --type=d --hidden --exclude .git . "$1"
 }
 
-source ~/fzf-git.sh/fzf-git.sh
-
 function gnext {
   local branch=${1:-main}
   git checkout .
@@ -165,39 +160,6 @@ export GOROOT=$(brew --prefix go)/libexec
 export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$GOROOT/bin:$HOME/.local/bin:$PATH
 # Loop through all files in the ~/.config/fabric/patterns directory
-
-for pattern_file in $HOME/.config/fabric/patterns/*; do
-    # Get the base name of the file (i.e., remove the directory path)
-    pattern_name=$(basename "$pattern_file")
-    
-    # Create an alias in the form: alias pattern_name="fabric --pattern pattern_name"
-    alias_command="alias $pattern_name='fabric --pattern $pattern_name'"
-    
-    # Evaluate the alias command to add it to the current shell
-    eval "$alias_command"
-done
-
-alias yt="$HOME/youtube-transcript/bin/yt.sh"
-
-export PKG_CONFIG_PATH="/opt/homebrew/opt/mysql-client/lib/pkgconfig"
-export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
-
-export PATH="/opt/homebrew/anaconda3/bin:$PATH"  # commented out by conda initialize
-
-# >>> conda initialize >>>
- #!! Contents within this block are managed by 'conda init' !!
-#__conda_setup="$('/opt/homebrew/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-#if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-#else
-#    if [ -f "/opt/homebrew/anaconda3/etc/profile.d/conda.sh" ]; then
-#        . "/opt/homebrew/anaconda3/etc/profile.d/conda.sh"
-#    else
-#        export PATH="/opt/homebrew/anaconda3/bin:$PATH"
-#    fi
-#fi
-#unset __conda_setup
-# <<< conda initialize <<<
 
 export AIRFLOW_HOME=~/airflow
 
