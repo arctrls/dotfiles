@@ -103,9 +103,6 @@ source $ZSH/oh-my-zsh.sh
 
 alias convmv-nfc='convmv -f utf-8 -t utf-8 --nfc --notest'
 
-# nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 # jenv
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
@@ -177,3 +174,4 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 alias bedrock="source ~/bedrock_claude.sh"
 
 alias claude="$HOME/.claude/local/claude"
+export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
