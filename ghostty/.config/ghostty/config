@@ -1,4 +1,5 @@
-font-family = "D2Coding ligature"
+font-family = "Source Code Pro for Powerline"
+font-family = "Apple SD Gothic Neo"
 theme = "iTerm2 Light Background"
 # theme = "catppuccin-latte"
 font-size = 14
