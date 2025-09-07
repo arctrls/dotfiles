@@ -185,3 +185,6 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+alias gitr="git reset --hard HEAD && git clean -fd"
+
