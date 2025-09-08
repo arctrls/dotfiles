@@ -186,3 +186,6 @@ case ":$PATH:" in
 esac
 # pnpm end
 alias add-serena='~/add-serena.sh'
+
+alias gitr="git reset --hard HEAD && git clean -fd"
+
