@@ -1,6 +1,6 @@
 # App shortcuts
 alt - a: open -a 'Dia'
-alt - b : open -a 'Obsidian'
+alt - o : open -a 'Obsidian'
 alt - c: open -a 'Ghostty'
 alt - f: open -a 'Finder'
 alt - h: open -a 'Things3'

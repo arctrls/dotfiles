@@ -195,3 +195,6 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 
+if [[ -z "$TMUX" ]]; then
+    tmux attach || tmux new
+fi
