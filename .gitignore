@@ -41,3 +41,6 @@ spy.log
 .kotlin
 *.received.txt
 .aider*
+
+### Karabiner ###
+karabiner/.config/karabiner/automatic_backups/
