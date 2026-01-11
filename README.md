@@ -4,14 +4,47 @@
 
 ## 설치
 
-### 1. Stow 설치
+### 1. Prerequisites 설치
+
+zshrc에서 사용하는 도구들입니다. 필수 항목은 반드시 설치해야 합니다.
+
+#### 필수 (Required)
 
 ```bash
-# macOS
-brew install stow
+# Homebrew로 설치
+brew install stow              # dotfiles 관리
+brew install neovim            # vi/vim alias
+brew install eza               # ll alias (ls 대체)
+brew install fzf               # fuzzy finder
+brew install fd                # fzf와 함께 사용 (find 대체)
+brew install tmux              # 터미널 멀티플렉서
+brew install zoxide            # z alias (cd 대체)
+brew install bat               # cat alias (cat 대체)
+brew install jenv              # Java 버전 관리
+brew install pyenv             # Python 버전 관리
 
-# Ubuntu/Debian
-sudo apt install stow
+# Oh My Zsh 설치
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+#### 선택적 (Optional)
+
+```bash
+# 필요한 경우에만 설치
+brew install kubectl           # Kubernetes CLI
+brew install terraform         # Infrastructure as Code
+brew install ngrok             # 터널링
+brew install go                # Golang
+brew install convmv            # 파일명 NFC 변환
+
+# 버전 관리자
+curl -s "https://get.sdkman.io" | bash                    # gvm (Go)
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash  # nvm (Node.js)
+curl -fsSL https://bun.sh/install | bash                  # bun
+pnpm setup                                                # pnpm
+
+# Claude Code CLI
+brew install claude-code
 ```
 
 ### 2. 저장소 클론

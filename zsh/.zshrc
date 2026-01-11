@@ -202,3 +202,9 @@ fi
 
 # Jira API Token for Claude Code MCP
 export JIRA_API_TOKEN="***JIRA_TOKEN_REDACTED***"
+
+# zoxide (smarter cd)
+eval "$(zoxide init zsh)"
+
+# bat (better cat)
+alias cat="bat --paging=never"
