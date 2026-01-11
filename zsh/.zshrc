@@ -199,3 +199,6 @@ eval "$(pyenv init -)"
 if [[ -z "$TMUX" ]]; then
     tmux attach || tmux new
 fi
+
+# Jira API Token for Claude Code MCP
+export JIRA_API_TOKEN="***JIRA_TOKEN_REDACTED***"
