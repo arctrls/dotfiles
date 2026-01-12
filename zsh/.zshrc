@@ -206,6 +206,9 @@ export JIRA_API_TOKEN="***JIRA_TOKEN_REDACTED***"
 # Notion API Key for Claude Code MCP
 export NOTION_API_KEY="***NOTION_TOKEN_REDACTED***"
 
+# GitHub Personal Access Token for Claude Code MCP
+export GITHUB_PERSONAL_ACCESS_TOKEN="***GITHUB_PAT_REDACTED***"
+
 # zoxide (smarter cd)
 eval "$(zoxide init zsh)"
 
