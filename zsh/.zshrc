@@ -200,14 +200,8 @@ if [[ -z "$TMUX" ]]; then
     tmux attach || tmux new
 fi
 
-# Jira API Token for Claude Code MCP
-export JIRA_API_TOKEN="***JIRA_TOKEN_REDACTED***"
-
-# Notion API Key for Claude Code MCP
-export NOTION_TOKEN="***NOTION_TOKEN_REDACTED***"
-
-# GitHub Personal Access Token for Claude Code MCP
-export GITHUB_PERSONAL_ACCESS_TOKEN="***GITHUB_PAT_REDACTED***"
+# Load credentials from private dotfiles (dotfiles-secrets)
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 
 # zoxide (smarter cd)
 eval "$(zoxide init zsh)"
