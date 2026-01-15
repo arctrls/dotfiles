@@ -1,0 +1,35 @@
+{
+  "title": "Convert to en when Ctrl+A (tmux prefix)",
+  "rules": [
+    {
+      "description": "Ctrl+A 입력 시 영문 전환 후 전송 (tmux prefix)",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "a",
+            "modifiers": {
+              "mandatory": ["control"]
+            }
+          },
+          "to": [
+            { "select_input_source": { "language": "en" } },
+            { "key_code": "a", "modifiers": ["control"] }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "^com\\.apple\\.Terminal$",
+                "^com\\.googlecode\\.iterm2$",
+                "^io\\.alacritty$",
+                "^net\\.kovidgoyal\\.kitty$",
+                "^com\\.mitchellh\\.ghostty$"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
