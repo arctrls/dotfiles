@@ -19,6 +19,9 @@ cursor-style = block
 mouse-hide-while-typing = true
 mouse-scroll-multiplier = 2
 
+# 링크 클릭 설정 - 마우스 클릭만으로 URL 열기
+link-url = true
+
 
 # keybindings
 keybind = cmd+s>r=reload_config
