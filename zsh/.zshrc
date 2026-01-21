@@ -188,7 +188,7 @@ esac
 alias add-serena='~/add-serena.sh'
 
 alias gitr="git reset --hard HEAD && git clean -fd"
-alias cl="claude --dangerously-skip-permissions --verbose"
+alias cl="claude --dangerously-skip-permissions"
 
 ## pyenv
 export PYENV_ROOT="$HOME/.pyenv"
