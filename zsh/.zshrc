@@ -208,3 +208,7 @@ eval "$(zoxide init zsh)"
 
 # bat (better cat)
 alias cat="bat --paging=never"
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+
+# Claude Code LSP support
+export ENABLE_LSP_TOOL=1
