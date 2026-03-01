@@ -213,4 +213,4 @@ export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 # Claude Code LSP support
 export ENABLE_LSP_TOOL=1
 
-alias cx="omx --xhigh --madmax"
+alias cx="opencode"
