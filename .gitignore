@@ -47,3 +47,5 @@ karabiner/.config/karabiner/automatic_backups/
 
 ### Neovim ###
 nvim/.config/nvim/lazyvim.json
+
+.omx/
