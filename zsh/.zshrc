@@ -205,3 +205,6 @@ export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 export ENABLE_LSP_TOOL=1
 
 alias cx="omx --xhigh --madmax"
+export HOMEBREW_AUTO_UPDATE_SECS=1
+unset HOMEBREW_NO_AUTO_UPDATE
+export HOMEBREW_NO_ENV_HINTS=1
