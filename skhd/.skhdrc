@@ -1,5 +1,5 @@
 # App shortcuts
-alt - a: open -a 'Dia'
+alt - a: open -a 'Google Chrome Canary'
 alt - o : open -a 'Obsidian'
 alt - c: open -a 'Ghostty'
 alt - f: open -a 'Finder'
@@ -7,4 +7,3 @@ alt - h: open -a 'Things3'
 alt - i: open -a 'IntelliJ IDEA'
 alt - s : open -a 'Slack'
 alt - t : open -a 'Microsoft Teams'
-alt - v : open -a 'AWS VPN Client'
