@@ -4,52 +4,12 @@
 
 ## 설치
 
-### 1. Prerequisites 설치
+### 1. Homebrew 설치
 
-shell 설정에서 사용하는 도구들입니다. 필수 항목은 반드시 설치해야 합니다.
-
-#### 필수 (Required)
+Homebrew가 없다면 먼저 설치합니다.
 
 ```bash
-# Homebrew로 설치
-brew install stow              # dotfiles 관리
-brew install neovim            # vi/vim alias
-brew install eza               # ll alias (ls 대체)
-brew install fzf               # fuzzy finder
-brew install fd                # fzf와 함께 사용 (find 대체)
-brew install tmux              # 터미널 멀티플렉서
-brew install zoxide            # z alias (cd 대체)
-brew install bat               # cat alias (cat 대체)
-brew install jenv              # Java 버전 관리
-brew install pyenv             # Python 버전 관리
-brew install fnm               # Node.js 버전 관리
-brew install fish              # fish shell
-
-# Oh My Zsh 설치
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-# Oh My Fish 설치
-curl -L https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install \
-  | fish /dev/stdin --path=$HOME/.local/share/omf --config=$HOME/.config/omf
-```
-
-#### 선택적 (Optional)
-
-```bash
-# 필요한 경우에만 설치
-brew install kubectl           # Kubernetes CLI
-brew install terraform         # Infrastructure as Code
-brew install ngrok             # 터널링
-brew install go                # Golang
-brew install convmv            # 파일명 NFC 변환
-
-# 버전 관리자
-curl -s "https://get.sdkman.io" | bash                    # gvm (Go)
-curl -fsSL https://bun.sh/install | bash                  # bun
-pnpm setup                                                # pnpm
-
-# Claude Code CLI
-brew install claude-code
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
 ### 2. 저장소 클론
@@ -59,7 +19,46 @@ git clone https://github.com/arctrls/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 ```
 
+### 3. Homebrew 패키지 설치
+
+이 저장소의 `Brewfile`로 현재 사용하는 formula, cask, tap 구성을 한 번에 설치합니다.
+
+```bash
+brew bundle --file=~/dotfiles/Brewfile --no-upgrade
+```
+
+필요한 패키지가 모두 설치되어 있는지 확인하려면:
+
+```bash
+brew bundle check --file=~/dotfiles/Brewfile --no-upgrade
+```
+
+### 4. Shell framework 설치
+
+Homebrew 패키지 외에 shell framework는 별도로 설치합니다.
+
+```bash
+# Oh My Zsh 설치
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# Oh My Fish 설치
+curl -L https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install \
+  | fish /dev/stdin --path=$HOME/.local/share/omf --config=$HOME/.config/omf
+
+# 선택적 런타임/도구
+curl -fsSL https://bun.sh/install | bash
+pnpm setup
+```
+
 ## 사용법
+
+### Homebrew 패키지 갱신
+
+```bash
+# 현재 brew 상태를 Brewfile에 반영
+brew bundle dump --force --file=Brewfile
+```
+
 
 ### 설정 적용 (Stow)
 

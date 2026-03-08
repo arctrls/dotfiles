@@ -54,6 +54,12 @@ dotfiles/
    # 출력: ghostty -> ../projects/dotfiles/ghostty/.config/ghostty
    ```
 
+## Homebrew 관리
+
+- Homebrew 패키지는 저장소 루트 `Brewfile`로 관리합니다.
+- 패키지/탭/캐스크를 추가하거나 제거했으면 `brew bundle dump --force --file=Brewfile`로 갱신하세요.
+- 기본 설치/검증 명령은 각각 `brew bundle --file=Brewfile --no-upgrade`, `brew bundle check --file=Brewfile --no-upgrade` 입니다.
+
 ## 현재 Stow 패키지
 
 | 패키지 | 링크 대상 | 링크 타입 |
