@@ -5,6 +5,7 @@
 ## 포함된 기능
 
 - `mini.deps`: 플러그인 관리
+- `mini.statusline`: 심플한 statusline
 - `cyberdream.nvim`: 테마
 - `gitsigns.nvim`: Git 변경 라인 표시
 - `markdown-preview.nvim`: Markdown 미리보기
@@ -19,6 +20,7 @@
 - 자동 설치 formatter: `stylua`, `shfmt`, `prettier`, `taplo`
 - diagnostics는 `virtual_text` 없이 표시됩니다.
 - 저장 시 자동 포맷됩니다.
+- statusline은 mode / git / diff / diagnostics / LSP / 파일 정보 / 위치를 표시합니다.
 
 ## 자주 쓰는 명령
 
