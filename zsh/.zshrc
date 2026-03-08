@@ -171,10 +171,12 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 alias bedrock="source ~/bedrock_claude.sh"
 
-# nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# fnm
+if [[ -t 1 ]]; then
+  eval "$(fnm env --shell zsh --use-on-cd --version-file-strategy=recursive --corepack-enabled)"
+else
+  eval "$(fnm env --shell zsh --version-file-strategy=recursive --corepack-enabled)"
+fi
 
 alias add-serena='~/add-serena.sh'
 

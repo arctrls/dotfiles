@@ -22,6 +22,7 @@ brew install zoxide            # z alias (cd 대체)
 brew install bat               # cat alias (cat 대체)
 brew install jenv              # Java 버전 관리
 brew install pyenv             # Python 버전 관리
+brew install fnm               # Node.js 버전 관리
 
 # Oh My Zsh 설치
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
