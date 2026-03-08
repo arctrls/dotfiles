@@ -1,17 +1,17 @@
--- Options are automatically loaded before lazy.nvim startup
--- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
--- Add any additional options here
-
--- Disable spell check globally
 vim.opt.spell = false
-vim.opt.spelllang = { "en" }
-vim.g.spell = false
-
--- Disable diagnostics completely
 vim.diagnostic.config({
   virtual_text = false,
-  signs = false,
-  underline = false,
+  signs = true,
+  underline = true,
   update_in_insert = false,
-  severity_sort = false,
+  severity_sort = true,
+  float = {
+    border = "rounded",
+    source = "if_many",
+  },
 })
+
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
+vim.opt.number = true
+vim.opt.signcolumn = "yes"
+vim.opt.termguicolors = true

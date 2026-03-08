@@ -142,8 +142,15 @@ stow -t ~ --adopt nvim
 
 ## 관리되는 설정
 
-- **nvim**: Neovim 설정
+- **nvim**: `mini.deps` + Mason + LSP + blink.cmp + conform 기반 Neovim 설정
 - **skhd**: Simple Hotkey Daemon 설정  
 - **zsh**: Zsh 및 Oh My Zsh 설정
 - **karabiner**: Karabiner-Elements 설정
 - **ghostty**: Ghostty 터미널 설정
+
+## Neovim 메모
+
+- 배포판(LazyVim) 없이 직접 관리하는 최소 구성입니다.
+- 첫 실행 시 `mini.deps`가 플러그인을 설치합니다.
+- `:Mason`에서 LSP/formatter 설치 상태를 확인할 수 있습니다.
+- 저장 시 자동 포맷이 켜져 있습니다.
