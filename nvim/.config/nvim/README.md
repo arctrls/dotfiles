@@ -6,6 +6,7 @@
 
 - `mini.deps`: 플러그인 관리
 - `cyberdream.nvim`: 테마
+- `gitsigns.nvim`: Git 변경 라인 표시
 - `markdown-preview.nvim`: Markdown 미리보기
 - `mason.nvim` + `mason-lspconfig.nvim`: LSP / formatter 설치
 - `nvim-lspconfig`: LSP 연결

@@ -2,6 +2,7 @@ local add = MiniDeps.add
 
 add("scottmckendry/cyberdream.nvim")
 add("iamcco/markdown-preview.nvim")
+add("lewis6991/gitsigns.nvim")
 add("mason-org/mason.nvim")
 add("mason-org/mason-lspconfig.nvim")
 add("neovim/nvim-lspconfig")
@@ -26,6 +27,22 @@ if vim.uv.fs_stat(markdown_preview_app) and not vim.uv.fs_stat(markdown_preview_
     vim.notify("markdown-preview.nvim install failed:\n" .. out, vim.log.levels.ERROR)
   end
 end
+
+require("gitsigns").setup({
+  signs = {
+    add = { text = "┃" },
+    change = { text = "┃" },
+    delete = { text = "_" },
+    topdelete = { text = "‾" },
+    changedelete = { text = "~" },
+    untracked = { text = "┆" },
+  },
+  signcolumn = true,
+  numhl = false,
+  linehl = false,
+  word_diff = false,
+  current_line_blame = false,
+})
 
 require("cyberdream").setup({
   variant = "light",
