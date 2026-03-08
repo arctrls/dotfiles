@@ -6,7 +6,7 @@
 
 ### 1. Prerequisites 설치
 
-zshrc에서 사용하는 도구들입니다. 필수 항목은 반드시 설치해야 합니다.
+shell 설정에서 사용하는 도구들입니다. 필수 항목은 반드시 설치해야 합니다.
 
 #### 필수 (Required)
 
@@ -23,9 +23,14 @@ brew install bat               # cat alias (cat 대체)
 brew install jenv              # Java 버전 관리
 brew install pyenv             # Python 버전 관리
 brew install fnm               # Node.js 버전 관리
+brew install fish              # fish shell
 
 # Oh My Zsh 설치
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# Oh My Fish 설치
+curl -L https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install \
+  | fish /dev/stdin --path=$HOME/.local/share/omf --config=$HOME/.config/omf
 ```
 
 #### 선택적 (Optional)
@@ -40,7 +45,6 @@ brew install convmv            # 파일명 NFC 변환
 
 # 버전 관리자
 curl -s "https://get.sdkman.io" | bash                    # gvm (Go)
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash  # nvm (Node.js)
 curl -fsSL https://bun.sh/install | bash                  # bun
 pnpm setup                                                # pnpm
 
@@ -62,6 +66,7 @@ cd ~/dotfiles
 ```bash
 # 개별 패키지 적용
 stow -t ~ nvim
+stow -t ~ fish
 stow -t ~ zsh
 stow -t ~ skhd
 stow -t ~ karabiner
@@ -95,6 +100,10 @@ stow -t ~ -R */
 
 ```
 dotfiles/
+├── fish/
+│   └── .config/
+│       ├── fish/
+│       └── omf/
 ├── nvim/
 │   └── .config/
 │       └── nvim/
@@ -137,13 +146,14 @@ stow -t ~ --adopt nvim
 ## 주의사항
 
 - **충돌 방지**: Stow는 기존 파일이 있으면 충돌을 일으킵니다. 기존 설정은 백업 후 제거하거나 `--adopt` 옵션을 사용하세요.
-- **애플리케이션 설치**: 새로운 머신에서는 해당 애플리케이션들(nvim, skhd, zsh, karabiner, ghostty)이 먼저 설치되어 있어야 합니다.
+- **애플리케이션 설치**: 새로운 머신에서는 해당 애플리케이션들(nvim, fish, skhd, zsh, karabiner, ghostty)이 먼저 설치되어 있어야 합니다.
 - **설정 수정**: 설정을 변경할 때는 dotfiles 디렉토리에서 직접 수정하세요. 심볼릭 링크로 연결되어 있어 자동으로 반영됩니다.
 - **포터블 설정**: 모든 경로는 `$HOME` 변수를 사용하여 다른 사용자/시스템에서도 동작합니다.
 
 ## 관리되는 설정
 
 - **nvim**: `mini.deps` + Mason + LSP + blink.cmp + conform 기반 Neovim 설정
+- **fish**: fish + Oh My Fish 기반 shell 설정
 - **skhd**: Simple Hotkey Daemon 설정  
 - **zsh**: Zsh 및 Oh My Zsh 설정
 - **karabiner**: Karabiner-Elements 설정

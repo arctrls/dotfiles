@@ -8,6 +8,10 @@ Stow는 **디렉토리 구조를 그대로 홈 디렉토리에 미러링**합니
 
 ```
 dotfiles/
+├── fish/
+│   └── .config/
+│       ├── fish/       → ~/.config/fish/
+│       └── omf/        → ~/.config/omf/
 ├── zsh/
 │   └── .zshrc          → ~/.zshrc (파일 링크)
 ├── ghostty/
@@ -55,6 +59,7 @@ dotfiles/
 | 패키지 | 링크 대상 | 링크 타입 |
 |--------|-----------|-----------|
 | zsh | `~/.zshrc` | 파일 |
+| fish | `~/.config/fish/`, `~/.config/omf/` | 디렉토리/파일 |
 | nvim | `~/.config/nvim/` | 디렉토리 |
 | ghostty | `~/.config/ghostty/` | 디렉토리 |
 | skhd | `~/.skhdrc` | 파일 |

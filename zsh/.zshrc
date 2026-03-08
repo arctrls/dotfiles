@@ -101,8 +101,6 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 
-alias convmv-nfc='convmv -f utf-8 -t utf-8 --nfc --notest'
-
 # jenv
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
@@ -130,36 +128,28 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_T_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
 
 _fzf_compgen_path() {
-  fd --hidden --exclude .git . "$1"
+	fd --hidden --exclude .git . "$1"
 }
 
 _fzf_compgen_dir() {
-  fd --type=d --hidden --exclude .git . "$1"
+	fd --type=d --hidden --exclude .git . "$1"
 }
 
 function gnext {
-  local branch=${1:-main}
-  git checkout .
-  git clean -fd
-  git checkout $(git log --reverse --pretty=%H --ancestry-path HEAD..$branch | head -n 1)
+	local branch=${1:-main}
+	git checkout .
+	git clean -fd
+	git checkout $(git log --reverse --pretty=%H --ancestry-path HEAD..$branch | head -n 1)
 }
 
 function gprev {
-  git checkout .
-  git clean -fd
-  git checkout $(git log --pretty=%H --parents -n 2 | tail -n 1)
+	git checkout .
+	git clean -fd
+	git checkout $(git log --pretty=%H --parents -n 2 | tail -n 1)
 }
 
-# Golang environment variables
-export GOROOT=$(brew --prefix go)/libexec
-export GOPATH=$HOME/go
-export PATH=$GOPATH/bin:$GOROOT/bin:$HOME/.local/bin:$PATH
-# Loop through all files in the ~/.config/fabric/patterns directory
-
-export AIRFLOW_HOME=~/airflow
-
 if command -v ngrok &>/dev/null; then
-  eval "$(ngrok completion)"
+	eval "$(ngrok completion)"
 fi
 
 # bun completions
@@ -169,16 +159,12 @@ fi
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-alias bedrock="source ~/bedrock_claude.sh"
-
 # fnm
 if [[ -t 1 ]]; then
-  eval "$(fnm env --shell zsh --use-on-cd --version-file-strategy=recursive --corepack-enabled)"
+	eval "$(fnm env --shell zsh --use-on-cd --version-file-strategy=recursive --corepack-enabled)"
 else
-  eval "$(fnm env --shell zsh --version-file-strategy=recursive --corepack-enabled)"
+	eval "$(fnm env --shell zsh --version-file-strategy=recursive --corepack-enabled)"
 fi
-
-alias add-serena='~/add-serena.sh'
 
 alias gitr="git reset --hard HEAD && git clean -fd"
 alias cl="claude --dangerously-skip-permissions"
@@ -190,7 +176,7 @@ eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 
 if [[ -z "$TMUX" ]]; then
-    tmux attach || tmux new
+	tmux attach || tmux new
 fi
 
 # Load credentials from private dotfiles (dotfiles-secrets)
