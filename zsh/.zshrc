@@ -175,7 +175,10 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 
-if [[ -z "$TMUX" ]]; then
+# Auto-start tmux only when zsh itself is the login shell.
+# If fish is the login shell and zsh is launched as a subshell/transient shell,
+# don't bounce through tmux from zsh.
+if [[ -z "$TMUX" && "${SHELL:-}" == *"zsh" ]]; then
 	tmux attach || tmux new
 fi
 

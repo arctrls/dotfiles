@@ -41,7 +41,11 @@ alias cat='bat --paging=never'
 if status is-interactive
     if not set -q TMUX
         if command -q tmux
-            tmux attach; or tmux new
+            if tmux has-session 2>/dev/null
+                exec tmux attach
+            else
+                exec tmux new
+            end
         end
     end
 end
