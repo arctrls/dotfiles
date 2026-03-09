@@ -6,6 +6,14 @@ add("lewis6991/gitsigns.nvim")
 add("mason-org/mason.nvim")
 add("mason-org/mason-lspconfig.nvim")
 add("neovim/nvim-lspconfig")
+add({
+  source = "nvim-treesitter/nvim-treesitter",
+  hooks = {
+    post_checkout = function()
+      pcall(vim.cmd, "TSUpdate")
+    end,
+  },
+})
 add("saghen/blink.cmp")
 add("stevearc/conform.nvim")
 
@@ -27,6 +35,67 @@ if vim.uv.fs_stat(markdown_preview_app) and not vim.uv.fs_stat(markdown_preview_
     vim.notify("markdown-preview.nvim install failed:\n" .. out, vim.log.levels.ERROR)
   end
 end
+
+local treesitter_parsers = {
+  "bash",
+  "json",
+  "lua",
+  "markdown",
+  "markdown_inline",
+  "query",
+  "toml",
+  "vim",
+  "vimdoc",
+  "yaml",
+  "zsh",
+}
+
+local treesitter_languages = {
+  bash = { "bash", "sh" },
+  json = { "json", "jsonc" },
+  lua = { "lua" },
+  markdown = { "markdown" },
+  query = { "query" },
+  toml = { "toml" },
+  vim = { "vim" },
+  vimdoc = { "help" },
+  yaml = { "yaml" },
+  zsh = { "zsh" },
+}
+
+local treesitter = require("nvim-treesitter")
+
+treesitter.setup({
+  install_dir = vim.fn.stdpath("data") .. "/site",
+})
+
+treesitter.install(treesitter_parsers)
+
+for lang, filetypes in pairs(treesitter_languages) do
+  for _, filetype in ipairs(filetypes) do
+    vim.treesitter.language.register(lang, filetype)
+  end
+end
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = {
+    "bash",
+    "help",
+    "json",
+    "jsonc",
+    "lua",
+    "markdown",
+    "query",
+    "sh",
+    "toml",
+    "vim",
+    "yaml",
+    "zsh",
+  },
+  callback = function(args)
+    pcall(vim.treesitter.start, args.buf)
+  end,
+})
 
 require("gitsigns").setup({
   signs = {
