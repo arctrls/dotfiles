@@ -8,6 +8,12 @@ set -gx FZF_DEFAULT_COMMAND "fd --hidden --strip-cwd-prefix --exclude .git"
 set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
 set -gx FZF_ALT_C_COMMAND "fd --type=d --hidden --strip-cwd-prefix --exclude .git"
 
+if test -x /opt/homebrew/bin/brew
+    /opt/homebrew/bin/brew shellenv | source
+else if test -x /usr/local/bin/brew
+    /usr/local/bin/brew shellenv | source
+end
+
 fish_add_path "$BUN_INSTALL/bin"
 fish_add_path "$PYENV_ROOT/bin" "$PYENV_ROOT/shims"
 fish_add_path "$HOME/.jenv/bin" "$HOME/.jenv/shims"
