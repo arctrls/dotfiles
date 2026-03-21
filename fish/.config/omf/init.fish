@@ -43,6 +43,7 @@ alias gitr='git reset --hard HEAD && git clean -fd'
 alias cl='claude --dangerously-skip-permissions'
 alias cx='codex --dangerously-bypass-approvals-and-sandbox'
 alias cat='bat --paging=never'
+alias diff='delta'
 
 if status is-interactive
     if not set -q TMUX
