@@ -41,7 +41,7 @@ alias vim='nvim'
 alias ll='eza --long --git --all'
 alias gitr='git reset --hard HEAD && git clean -fd'
 alias cl='claude --dangerously-skip-permissions'
-alias cx='omx --xhigh --madmax'
+alias cx='codex --high --madmax'
 alias cat='bat --paging=never'
 
 if status is-interactive
