@@ -21,6 +21,7 @@
 - 자동 설치 formatter: `stylua`, `shfmt`, `prettier`, `taplo`
 - 자동 설치 parser: `bash`, `json`, `lua`, `markdown`, `markdown_inline`, `query`, `toml`, `vim`, `vimdoc`, `yaml`, `zsh`
 - diagnostics는 `virtual_text` 없이 표시됩니다.
+- 기본 yank/delete/paste 레지스터는 시스템 클립보드와 공유됩니다.
 - 저장 시 자동 포맷됩니다.
 - Tree-sitter 하이라이트는 `lua`, `json/jsonc`, `markdown`, `toml`, `yaml`, `vim/help`, `bash/sh`, `zsh`, `query`에 적용됩니다.
 - statusline은 mode / git / diff / diagnostics / LSP / 파일 정보 / 위치를 표시합니다.
