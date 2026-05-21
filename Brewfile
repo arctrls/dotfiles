@@ -146,6 +146,7 @@ brew "uvwasi"
 brew "wget"
 brew "xorgproto"
 brew "xz"
+brew "yazi"
 brew "zoxide"
 brew "zstd"
 
