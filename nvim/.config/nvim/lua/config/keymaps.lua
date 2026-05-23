@@ -10,6 +10,14 @@ vim.keymap.set("n", "<leader><space>", function()
   require("fzf-lua").files()
 end, { desc = "Find files" })
 
+vim.keymap.set("n", "]c", function()
+  require("gitsigns").nav_hunk("next")
+end, { desc = "Next git hunk" })
+
+vim.keymap.set("n", "[c", function()
+  require("gitsigns").nav_hunk("prev")
+end, { desc = "Previous git hunk" })
+
 vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "Toggle file tree" })
 
 vim.keymap.set("n", "<leader>,", function()
