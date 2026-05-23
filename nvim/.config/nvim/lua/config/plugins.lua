@@ -6,6 +6,11 @@ add("lewis6991/gitsigns.nvim")
 add("mason-org/mason.nvim")
 add("mason-org/mason-lspconfig.nvim")
 add("neovim/nvim-lspconfig")
+add("nvim-tree/nvim-web-devicons")
+add("ibhagwan/fzf-lua")
+add("folke/trouble.nvim")
+add("stevearc/aerial.nvim")
+add("christoomey/vim-tmux-navigator")
 add({
   source = "nvim-treesitter/nvim-treesitter",
   hooks = {
@@ -38,6 +43,7 @@ end
 
 local treesitter_parsers = {
   "bash",
+  "java",
   "json",
   "lua",
   "markdown",
@@ -52,6 +58,7 @@ local treesitter_parsers = {
 
 local treesitter_languages = {
   bash = { "bash", "sh" },
+  java = { "java" },
   json = { "json", "jsonc" },
   lua = { "lua" },
   markdown = { "markdown" },
@@ -81,6 +88,7 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = {
     "bash",
     "help",
+    "java",
     "json",
     "jsonc",
     "lua",
@@ -111,6 +119,27 @@ require("gitsigns").setup({
   linehl = false,
   word_diff = false,
   current_line_blame = false,
+})
+
+require("fzf-lua").setup({
+  winopts = {
+    height = 0.85,
+    width = 0.9,
+    preview = {
+      layout = "flex",
+    },
+  },
+})
+
+require("trouble").setup({})
+
+require("aerial").setup({
+  backends = { "lsp", "treesitter", "markdown" },
+  layout = {
+    min_width = 28,
+    default_direction = "right",
+  },
+  show_guides = true,
 })
 
 require("cyberdream").setup({
