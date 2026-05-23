@@ -10,6 +10,32 @@ vim.keymap.set("n", "<leader><space>", function()
   require("fzf-lua").files()
 end, { desc = "Find files" })
 
+local function is_gitsigns_buffer(bufnr)
+  return vim.startswith(vim.api.nvim_buf_get_name(bufnr), "gitsigns://")
+end
+
+local function close_git_diff()
+  local current_win = vim.api.nvim_get_current_win()
+
+  for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+    if vim.api.nvim_win_is_valid(win) and is_gitsigns_buffer(vim.api.nvim_win_get_buf(win)) then
+      pcall(vim.api.nvim_win_close, win, true)
+    end
+  end
+
+  for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+    if vim.api.nvim_win_is_valid(win) then
+      vim.wo[win].diff = false
+    end
+  end
+
+  if vim.api.nvim_win_is_valid(current_win) then
+    vim.api.nvim_set_current_win(current_win)
+  end
+
+  require("gitsigns").refresh()
+end
+
 vim.keymap.set("n", "]c", function()
   if vim.wo.diff then
     vim.cmd.normal({ "]c", bang = true })
@@ -29,8 +55,13 @@ vim.keymap.set("n", "[c", function()
 end, { desc = "Previous git hunk" })
 
 vim.keymap.set("n", "<leader>gd", function()
+  if vim.wo.diff then
+    close_git_diff()
+    return
+  end
+
   require("gitsigns").diffthis()
-end, { desc = "Git diff current file" })
+end, { desc = "Toggle git diff current file" })
 
 vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "Toggle file tree" })
 
