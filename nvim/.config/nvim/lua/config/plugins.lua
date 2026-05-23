@@ -199,6 +199,7 @@ require("cyberdream").setup({
     return {
       Normal = { fg = idea.fg, bg = idea.bg },
       NormalFloat = { fg = idea.fg, bg = idea.bg },
+      FloatBorder = { fg = "#b8b8b8", bg = idea.bg },
       SignColumn = { bg = idea.bg },
       CursorLine = { bg = idea.line },
       CursorLineNr = { fg = idea.fg, bg = idea.line, bold = true },
