@@ -11,12 +11,26 @@ vim.keymap.set("n", "<leader><space>", function()
 end, { desc = "Find files" })
 
 vim.keymap.set("n", "]c", function()
+  if vim.wo.diff then
+    vim.cmd.normal({ "]c", bang = true })
+    return
+  end
+
   require("gitsigns").nav_hunk("next")
 end, { desc = "Next git hunk" })
 
 vim.keymap.set("n", "[c", function()
+  if vim.wo.diff then
+    vim.cmd.normal({ "[c", bang = true })
+    return
+  end
+
   require("gitsigns").nav_hunk("prev")
 end, { desc = "Previous git hunk" })
+
+vim.keymap.set("n", "<leader>gd", function()
+  require("gitsigns").diffthis()
+end, { desc = "Git diff current file" })
 
 vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "Toggle file tree" })
 
