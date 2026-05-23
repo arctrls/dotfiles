@@ -1,7 +1,7 @@
 window-padding-x = 10
 window-padding-y = 10
 
-font-family = "JetBrainsMono Nerd Font"
+font-family = "GeistMono Nerd Font Mono"
 font-family = "Apple SD Gothic Neo"
 theme = "iTerm2 Light Background"
 # theme = "catppuccin-latte"
@@ -11,7 +11,7 @@ font-size = 14
 # Ayu Mirage
 shell-integration-features = no-cursor, sudo,no-title
 cursor-style = block
-# adjust-cell-height = 5%
+adjust-cell-height = 10%
 
 # Hide the mouse immediately when typing. The mouse becomes visible again
 # may dictate other scenarios where the mouse is shown. For example on macOS,3
