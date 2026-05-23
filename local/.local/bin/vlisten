@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+socket=$(nvim-remote-socket)
+rm -f -- "$socket"
+export NVIM_REMOTE_SOCKET="$socket"
+exec nvim --listen "$socket" "$@"

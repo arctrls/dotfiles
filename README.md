@@ -70,6 +70,7 @@ stow -t ~ zsh
 stow -t ~ skhd
 stow -t ~ karabiner
 stow -t ~ ghostty
+stow -t ~ local
 
 # 모든 패키지 적용
 stow -t ~ */
@@ -110,6 +111,9 @@ dotfiles/
 │   └── .skhdrc
 ├── zsh/
 │   └── .zshrc
+├── local/
+│   └── .local/
+│       └── bin/
 ├── karabiner/
 │   └── .config/
 │       └── karabiner/
@@ -157,6 +161,7 @@ stow -t ~ --adopt nvim
 - **zsh**: Zsh 및 Oh My Zsh 설정
 - **karabiner**: Karabiner-Elements 설정
 - **ghostty**: Ghostty 터미널 설정
+- **local**: `$HOME/.local/bin`에 설치되는 공통 실행 스크립트
 
 ## Neovim 메모
 
@@ -164,3 +169,21 @@ stow -t ~ --adopt nvim
 - 첫 실행 시 `mini.deps`가 플러그인을 설치합니다.
 - `:Mason`에서 LSP/formatter 설치 상태를 확인할 수 있습니다.
 - 저장 시 자동 포맷이 켜져 있습니다.
+
+## Neovim Remote 메모
+
+tmux 안에서 Neovim과 Codex/shell pane을 함께 쓸 때, 기존 Neovim
+세션에 파일을 열 수 있습니다.
+
+```bash
+# Neovim pane
+vlisten .
+
+# Codex/shell pane
+vopen README.md
+vopen README.md 10
+vopen README.md:10
+```
+
+`vlisten`은 tmux 세션별 socket을 열고, `vopen`은 그 socket으로 기존
+Neovim에 파일 열기 요청을 보냅니다.

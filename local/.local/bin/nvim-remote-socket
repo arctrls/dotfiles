@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+
+if [ -n "${NVIM_REMOTE_SOCKET:-}" ]; then
+  printf '%s\n' "$NVIM_REMOTE_SOCKET"
+  exit 0
+fi
+
+if [ -n "${TMUX_PANE:-}" ] && command -v tmux >/dev/null 2>&1; then
+  session=$(tmux display-message -p '#S' 2>/dev/null || true)
+  if [ -n "$session" ]; then
+    printf '/tmp/nvim-%s-%s.sock\n' "$USER" "$session"
+    exit 0
+  fi
+fi
+
+printf '/tmp/nvim-%s.sock\n' "$USER"

@@ -16,3 +16,8 @@ vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.number = true
 vim.opt.signcolumn = "yes"
 vim.opt.termguicolors = true
+vim.opt.autoread = true
+
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+  command = "checktime",
+})
