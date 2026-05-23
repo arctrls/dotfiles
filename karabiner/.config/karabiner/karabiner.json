@@ -11,7 +11,7 @@
                                 "from": { "key_code": "escape" },
                                 "to": [
                                     { "key_code": "escape" },
-                                    { "select_input_source": { "language": "en" } }
+                                    { "select_input_source": { "input_source_id": "com.apple.keylayout.ABC" } }
                                 ],
                                 "type": "basic"
                             }
@@ -27,7 +27,7 @@
                                     "modifiers": { "mandatory": ["control"] }
                                 },
                                 "to": [
-                                    { "select_input_source": { "language": "en" } },
+                                    { "select_input_source": { "input_source_id": "com.apple.keylayout.ABC" } },
                                     { "key_code": "a", "modifiers": ["control"] }
                                 ],
                                 "conditions": [
