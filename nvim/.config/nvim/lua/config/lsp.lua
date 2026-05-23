@@ -45,6 +45,7 @@ end
 
 local servers = {
   bashls = {},
+  graphql = {},
   jsonls = {},
   lua_ls = {
     on_init = function(client)
@@ -79,7 +80,9 @@ local servers = {
     },
   },
   marksman = {},
+  sqlls = {},
   taplo = {},
+  ts_ls = {},
 }
 
 for server, config in pairs(servers) do
@@ -116,6 +119,7 @@ end
 ensure_tools_installed({
   "prettier",
   "shfmt",
+  "sleek",
   "stylua",
   "taplo",
 })

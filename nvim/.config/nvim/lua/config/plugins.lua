@@ -1,5 +1,8 @@
 local add = MiniDeps.add
 
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 add("scottmckendry/cyberdream.nvim")
 add("iamcco/markdown-preview.nvim")
 add("lewis6991/gitsigns.nvim")
@@ -7,6 +10,7 @@ add("mason-org/mason.nvim")
 add("mason-org/mason-lspconfig.nvim")
 add("neovim/nvim-lspconfig")
 add("nvim-tree/nvim-web-devicons")
+add("nvim-tree/nvim-tree.lua")
 add("ibhagwan/fzf-lua")
 add("folke/trouble.nvim")
 add("stevearc/aerial.nvim")
@@ -43,13 +47,18 @@ end
 
 local treesitter_parsers = {
   "bash",
+  "graphql",
   "java",
+  "javascript",
   "json",
   "lua",
   "markdown",
   "markdown_inline",
   "query",
+  "sql",
   "toml",
+  "tsx",
+  "typescript",
   "vim",
   "vimdoc",
   "yaml",
@@ -58,12 +67,17 @@ local treesitter_parsers = {
 
 local treesitter_languages = {
   bash = { "bash", "sh" },
+  graphql = { "graphql" },
   java = { "java" },
+  javascript = { "javascript", "javascriptreact" },
   json = { "json", "jsonc" },
   lua = { "lua" },
   markdown = { "markdown" },
   query = { "query" },
+  sql = { "sql", "mysql" },
   toml = { "toml" },
+  tsx = { "typescriptreact" },
+  typescript = { "typescript" },
   vim = { "vim" },
   vimdoc = { "help" },
   yaml = { "yaml" },
@@ -87,15 +101,22 @@ end
 vim.api.nvim_create_autocmd("FileType", {
   pattern = {
     "bash",
+    "graphql",
     "help",
     "java",
+    "javascript",
+    "javascriptreact",
     "json",
     "jsonc",
     "lua",
     "markdown",
+    "mysql",
     "query",
     "sh",
+    "sql",
     "toml",
+    "typescript",
+    "typescriptreact",
     "vim",
     "yaml",
     "zsh",
@@ -119,6 +140,21 @@ require("gitsigns").setup({
   linehl = false,
   word_diff = false,
   current_line_blame = false,
+})
+
+require("nvim-tree").setup({
+  view = {
+    width = 32,
+  },
+  renderer = {
+    group_empty = true,
+  },
+  git = {
+    ignore = false,
+  },
+  update_focused_file = {
+    enable = true,
+  },
 })
 
 require("fzf-lua").setup({

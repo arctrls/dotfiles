@@ -2,12 +2,19 @@ local conform = require("conform")
 
 conform.setup({
   formatters_by_ft = {
+    graphql = { "prettier" },
     json = { "prettier" },
     jsonc = { "prettier" },
+    javascript = { "prettier" },
+    javascriptreact = { "prettier" },
     lua = { "stylua" },
     markdown = { "prettier" },
+    mysql = { "sleek" },
     sh = { "shfmt" },
+    sql = { "sleek" },
     toml = { "taplo" },
+    typescript = { "prettier" },
+    typescriptreact = { "prettier" },
     yaml = { "prettier" },
     zsh = { "shfmt" },
   },

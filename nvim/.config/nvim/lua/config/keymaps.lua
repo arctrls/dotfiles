@@ -10,6 +10,8 @@ vim.keymap.set("n", "<leader><space>", function()
   require("fzf-lua").files()
 end, { desc = "Find files" })
 
+vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "Toggle file tree" })
+
 vim.keymap.set("n", "<leader>,", function()
   require("fzf-lua").buffers()
 end, { desc = "Find buffers" })
