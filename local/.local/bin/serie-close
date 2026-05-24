@@ -1,0 +1,14 @@
+#!/bin/sh
+set -eu
+
+if [ -n "${TMUX:-}" ]; then
+  pane=$(tmux show-options -wqv @serie_delta_pane 2>/dev/null || true)
+  if [ -n "$pane" ] && tmux list-panes -a -F '#{pane_id}' | grep -Fxq "$pane"; then
+    tmux kill-pane -t "$pane" 2>/dev/null || true
+  fi
+
+  tmux set-option -wuq @serie_delta_pane 2>/dev/null || true
+fi
+
+parent=${SERIE_PID:-$PPID}
+kill "$parent" 2>/dev/null || true

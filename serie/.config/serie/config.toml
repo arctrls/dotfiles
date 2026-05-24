@@ -2,6 +2,8 @@
 user_command_1 = ["d"]
 user_command_2 = ["c"]
 user_command_3 = ["shift-c"]
+user_command_4 = ["q"]
+quit = []
 short_copy = ["y"]
 full_copy = ["shift-y"]
 
@@ -39,6 +41,11 @@ commands_3 = {
     "{{remote_branches}}",
   ],
   refresh = true,
+}
+commands_4 = {
+  name = "close serie",
+  type = "silent",
+  commands = ["serie-close"],
 }
 
 [color]
