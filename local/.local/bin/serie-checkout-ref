@@ -1,0 +1,109 @@
+#!/bin/sh
+set -eu
+
+if [ "$#" -lt 1 ]; then
+  echo "usage: serie-checkout-ref [--force-remote] <commit> --local [branches...] --remote [remote-branches...]" >&2
+  exit 2
+fi
+
+force_remote=false
+if [ "${1:-}" = "--force-remote" ]; then
+  force_remote=true
+  shift
+fi
+
+commit=$1
+shift
+mode=
+local_branches=
+remote_branches=
+
+for arg in "$@"; do
+  case "$arg" in
+    --local)
+      mode=local
+      ;;
+    --remote)
+      mode=remote
+      ;;
+    *)
+      case "$mode" in
+        local)
+          local_branches="${local_branches}${local_branches:+
+}$arg"
+          ;;
+        remote)
+          remote_branches="${remote_branches}${remote_branches:+
+}$arg"
+          ;;
+      esac
+      ;;
+  esac
+done
+
+first_line() {
+  printf '%s\n' "$1" | sed '/^$/d' | head -n 1
+}
+
+stash_if_dirty() {
+  if [ -n "$(git status --porcelain)" ]; then
+    git stash push -u -m "serie auto-stash before checkout"
+  fi
+}
+
+checkout_local() {
+  branch=$1
+  stash_if_dirty
+  git switch "$branch"
+}
+
+track_remote() {
+  remote_branch=$1
+  local_branch=${remote_branch#*/}
+
+  stash_if_dirty
+  if git show-ref --verify --quiet "refs/heads/$local_branch"; then
+    git switch "$local_branch"
+  else
+    git switch --track "$remote_branch"
+  fi
+}
+
+reset_to_remote() {
+  remote_branch=$1
+  local_branch=${remote_branch#*/}
+
+  stash_if_dirty
+  if git show-ref --verify --quiet "refs/heads/$local_branch"; then
+    git switch "$local_branch"
+  else
+    git switch --track "$remote_branch"
+  fi
+  git reset --hard "$remote_branch"
+}
+
+remote_branch=$(printf '%s\n' "$remote_branches" | awk 'NF && $0 !~ /\/HEAD$/ { print; exit }')
+if [ "$force_remote" = true ]; then
+  if [ -z "$remote_branch" ]; then
+    echo "No remote branch points to $commit; cannot force checkout remote." >&2
+    exit 1
+  fi
+
+  reset_to_remote "$remote_branch"
+  exit 0
+fi
+
+local_branch=$(first_line "$local_branches")
+if [ -n "$local_branch" ]; then
+  checkout_local "$local_branch"
+  exit 0
+fi
+
+if [ -n "$remote_branch" ]; then
+  track_remote "$remote_branch"
+  exit 0
+fi
+
+echo "No local or remote branch points to $commit; checking out detached HEAD." >&2
+stash_if_dirty
+git switch --detach "$commit"

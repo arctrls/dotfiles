@@ -1,0 +1,56 @@
+#!/bin/sh
+set -eu
+
+quote() {
+  printf "'%s'" "$(printf '%s' "$1" | sed "s/'/'\\\\''/g")"
+}
+
+show_diff() {
+  git --no-pager diff --color=always "$1" "$2" | delta --paging=always
+}
+
+if [ "${1:-}" = "--show" ]; then
+  shift
+  show_diff "$1" "$2"
+  exit 0
+fi
+
+if [ "${1:-}" = "--pane-shell" ]; then
+  shift
+  show_diff "$1" "$2"
+  exec "${SHELL:-/bin/sh}" -l
+fi
+
+if [ "$#" -ne 2 ]; then
+  echo "usage: serie-delta-pane <base> <target>" >&2
+  exit 2
+fi
+
+if [ -z "${TMUX:-}" ]; then
+  show_diff "$1" "$2"
+  exit 0
+fi
+
+base=$1
+target=$2
+option=@serie_delta_pane
+current_pane=$(tmux display-message -p '#{pane_id}')
+pane=$(tmux show-options -wqv "$option" 2>/dev/null || true)
+
+if [ -n "$pane" ] && ! tmux list-panes -F '#{pane_id}' | grep -Fxq "$pane"; then
+  pane=
+fi
+
+script=$HOME/.local/bin/serie-delta-pane
+
+if [ -z "$pane" ]; then
+  pane=$(tmux split-window -h -l 50% -P -F '#{pane_id}' \
+    "$script --pane-shell $(quote "$base") $(quote "$target")")
+  tmux set-option -wq "$option" "$pane"
+  tmux select-pane -t "$current_pane"
+  exit 0
+fi
+
+tmux respawn-pane -k -t "$pane" \
+  "$script --pane-shell $(quote "$base") $(quote "$target")"
+tmux select-pane -t "$current_pane"

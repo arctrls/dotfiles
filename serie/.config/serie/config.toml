@@ -1,0 +1,47 @@
+[keybind]
+user_command_1 = ["d"]
+user_command_2 = ["c"]
+user_command_3 = ["shift-c"]
+short_copy = ["y"]
+full_copy = ["shift-y"]
+
+[core.user_command]
+commands_1 = {
+  name = "delta diff in tmux",
+  type = "silent",
+  commands = [
+    "serie-delta-pane",
+    "{{first_parent_hash}}",
+    "{{target_hash}}",
+  ],
+}
+commands_2 = {
+  name = "checkout branch",
+  type = "suspend",
+  commands = [
+    "serie-checkout-ref",
+    "{{target_hash}}",
+    "--local",
+    "{{branches}}",
+    "--remote",
+    "{{remote_branches}}",
+  ],
+  refresh = true,
+}
+commands_3 = {
+  name = "force checkout remote branch",
+  type = "suspend",
+  commands = [
+    "serie-checkout-ref",
+    "--force-remote",
+    "{{target_hash}}",
+    "--remote",
+    "{{remote_branches}}",
+  ],
+  refresh = true,
+}
+
+[color]
+list_name_fg = "dark-gray"
+list_hash_fg = "dark-gray"
+list_date_fg = "dark-gray"
