@@ -12,3 +12,5 @@ fi
 
 parent=${SERIE_PID:-$PPID}
 kill "$parent" 2>/dev/null || true
+sleep 0.05
+clear >/dev/tty 2>/dev/null || true
