@@ -16,6 +16,7 @@ vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.number = true
 vim.opt.signcolumn = "yes"
 vim.opt.termguicolors = true
+vim.opt.cmdheight = 0
 vim.opt.winborder = "single"
 vim.opt.autoread = true
 
