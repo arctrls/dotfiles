@@ -48,7 +48,56 @@ commands_4 = {
   commands = ["serie-close"],
 }
 
+[graph.color]
+branches = [
+  "#3b82f6",
+  "#fb923c",
+  "#22c55e",
+  "#a855f7",
+  "#ef4444",
+  "#06b6d4",
+]
+edge = "#00000000"
+background = "#ffffff00"
+
 [color]
+fg = "#334155"
+bg = "#ffffff"
+list_ref_paren_fg = "#94a3b8"
+list_ref_branch_fg = "#3b82f6"
+list_ref_remote_branch_fg = "#06b6d4"
+list_ref_tag_fg = "#d97706"
+list_ref_stash_fg = "#a855f7"
+list_head_fg = "#22c55e"
+list_subject_fg = "#334155"
+list_selected_fg = "#ffffff"
+list_selected_bg = "#3b82f6"
 list_name_fg = "dark-gray"
 list_hash_fg = "dark-gray"
 list_date_fg = "dark-gray"
+list_match_fg = "#334155"
+list_match_bg = "#fef3c7"
+detail_label_fg = "#3b82f6"
+detail_name_fg = "#334155"
+detail_date_fg = "#64748b"
+detail_email_fg = "#06b6d4"
+detail_hash_fg = "#8b5cf6"
+detail_ref_branch_fg = "#3b82f6"
+detail_ref_remote_branch_fg = "#06b6d4"
+detail_ref_tag_fg = "#d97706"
+detail_file_change_add_fg = "#22c55e"
+detail_file_change_modify_fg = "#f97316"
+detail_file_change_delete_fg = "#ef4444"
+detail_file_change_move_fg = "#8b5cf6"
+ref_selected_fg = "#ffffff"
+ref_selected_bg = "#3b82f6"
+help_block_title_fg = "#3b82f6"
+help_key_fg = "#8b5cf6"
+virtual_cursor_fg = "#3b82f6"
+status_input_fg = "#334155"
+status_input_transient_fg = "#94a3b8"
+status_info_fg = "#3b82f6"
+status_success_fg = "#22c55e"
+status_warn_fg = "#f59e0b"
+status_error_fg = "#ef4444"
+divider_fg = "#e2e8f0"
