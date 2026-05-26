@@ -120,7 +120,9 @@ autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /opt/homebrew/bin/terraform terraform
 
 # set up fzf key binding
-eval "$(fzf --zsh)"
+if [[ -o interactive && -t 0 ]]; then
+	eval "$(fzf --zsh)"
+fi
 
 # use fd instead of fzf
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
@@ -149,7 +151,7 @@ function gprev {
 }
 
 if command -v ngrok &>/dev/null; then
-	eval "$(ngrok completion)"
+	eval "$(SHELL=/bin/zsh ngrok completion)"
 fi
 
 # bun completions
