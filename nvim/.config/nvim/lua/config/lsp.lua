@@ -28,9 +28,15 @@ local function lombok_version(path)
   return path:match("/lombok/([^/]+)/lombok%-.*%.jar$") or ""
 end
 
+local function is_lombok_agent_jar(path)
+  local version = lombok_version(path)
+  return version ~= "" and path:match("/lombok/" .. vim.pesc(version) .. "/lombok%-" .. vim.pesc(version) .. "%.jar$")
+end
+
 local function find_lombok_jar()
   local pattern = vim.fn.expand("~") .. "/.m2/repository/org/projectlombok/lombok/*/lombok-*.jar"
   local jars = vim.fn.glob(pattern, true, true)
+  jars = vim.tbl_filter(is_lombok_agent_jar, jars)
   table.sort(jars, function(left, right)
     return version_greater_than(lombok_version(left), lombok_version(right))
   end)
