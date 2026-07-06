@@ -5,7 +5,6 @@
 tap "anomalyco/tap"
 tap "databricks/tap"
 tap "hamed-elfayome/claude-usage"
-tap "homebrew/core"
 tap "koekeishiya/formulae"
 tap "steipete/tap"
 tap "telepresenceio/telepresence"
