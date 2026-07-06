@@ -25,17 +25,23 @@ local function version_greater_than(left, right)
 end
 
 local function lombok_version(path)
-  return path:match("/lombok/([^/]+)/lombok%-.*%.jar$") or ""
+  return path:match("/lombok/([%d%.]+)/") or path:match("lombok%-([%d%.]+)%.jar$") or ""
 end
 
 local function is_lombok_agent_jar(path)
   local version = lombok_version(path)
-  return version ~= "" and path:match("/lombok/" .. vim.pesc(version) .. "/lombok%-" .. vim.pesc(version) .. "%.jar$")
+  return version ~= "" and path:match("lombok%-" .. vim.pesc(version) .. "%.jar$")
 end
 
 local function find_lombok_jar()
-  local pattern = vim.fn.expand("~") .. "/.m2/repository/org/projectlombok/lombok/*/lombok-*.jar"
-  local jars = vim.fn.glob(pattern, true, true)
+  local jars = {}
+  for _, pattern in ipairs({
+    vim.fn.expand("~") .. "/.m2/repository/org/projectlombok/lombok/*/lombok-*.jar",
+    vim.fn.expand("~") .. "/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/*/*/lombok-*.jar",
+  }) do
+    vim.list_extend(jars, vim.fn.glob(pattern, true, true))
+  end
+
   jars = vim.tbl_filter(is_lombok_agent_jar, jars)
   table.sort(jars, function(left, right)
     return version_greater_than(lombok_version(left), lombok_version(right))
@@ -45,8 +51,14 @@ local function find_lombok_jar()
 end
 
 local lombok_jar = find_lombok_jar()
-if lombok_jar then
-  vim.env.JDTLS_JVM_ARGS = "-javaagent:" .. lombok_jar .. " " .. (vim.env.JDTLS_JVM_ARGS or "")
+
+local function jdtls_cmd()
+  local cmd = { "jdtls" }
+  if lombok_jar then
+    table.insert(cmd, "--jvm-arg=-javaagent:" .. lombok_jar)
+  end
+
+  return cmd
 end
 
 local servers = {
@@ -98,6 +110,7 @@ end
 
 vim.lsp.config("jdtls", {
   capabilities = capabilities,
+  cmd = jdtls_cmd(),
   detached = false,
 })
 vim.lsp.enable("jdtls")

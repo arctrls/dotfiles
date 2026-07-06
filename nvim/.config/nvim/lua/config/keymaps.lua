@@ -1,6 +1,20 @@
 vim.keymap.set({ "n", "v" }, "<leader>f", function()
-  require("conform").format({ lsp_format = "fallback", async = false })
+  vim.cmd.Format()
 end, { desc = "Format buffer" })
+
+vim.keymap.set({ "n", "v" }, "<leader>gf", function()
+  vim.cmd.Format()
+end, { desc = "Format buffer" })
+
+vim.keymap.set("n", "<leader>go", function()
+  vim.lsp.buf.code_action({
+    apply = true,
+    context = {
+      only = { "source.organizeImports" },
+      diagnostics = {},
+    },
+  })
+end, { desc = "Organize imports" })
 
 vim.keymap.set("n", "<leader><Esc>", function()
   vim.fn.setreg("/", "")
