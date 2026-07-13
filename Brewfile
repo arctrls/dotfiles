@@ -3,6 +3,7 @@
 
 # Taps
 tap "anomalyco/tap"
+tap "bysiber/cleardisk"
 tap "databricks/tap"
 tap "datadog-labs/pack"
 tap "koekeishiya/formulae"
@@ -155,6 +156,7 @@ brew "zstd"
 
 # Casks
 cask "claude-code"
+cask "cleardisk"
 cask "copilot-cli"
 cask "font-d2coding"
 cask "font-fira-code"

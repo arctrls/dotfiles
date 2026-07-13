@@ -1,0 +1,4 @@
+interface:
+  display_name: "Homebrew Install"
+  short_description: "Install with Homebrew and keep Brewfile in sync"
+  default_prompt: "Use $homebrew-install to install a package and keep the repository Brewfile synchronized."
