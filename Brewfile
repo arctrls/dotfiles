@@ -5,7 +5,6 @@
 tap "anomalyco/tap"
 tap "databricks/tap"
 tap "datadog-labs/pack"
-tap "hamed-elfayome/claude-usage"
 tap "koekeishiya/formulae"
 tap "steipete/tap"
 tap "telepresenceio/telepresence"
@@ -156,7 +155,6 @@ brew "zstd"
 
 # Casks
 cask "claude-code"
-cask "codex"
 cask "copilot-cli"
 cask "font-d2coding"
 cask "font-fira-code"
