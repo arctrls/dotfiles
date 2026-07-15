@@ -24,6 +24,7 @@ link-url = true
 
 
 # keybindings
+keybind = global:ctrl+shift+q=toggle_quick_terminal
 keybind = cmd+s>r=reload_config
 keybind = cmd+s>x=close_surface
 keybind = cmd+s>n=new_window
