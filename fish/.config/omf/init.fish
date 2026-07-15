@@ -44,15 +44,4 @@ alias cl='claude --dangerously-skip-permissions'
 alias cx='codex --dangerously-bypass-approvals-and-sandbox'
 alias cat='bat --paging=never'
 alias diff='delta'
-
-if status is-interactive
-    if not set -q TMUX
-        if command -q tmux
-            if tmux has-session 2>/dev/null
-                exec tmux attach
-            else
-                exec tmux new
-            end
-        end
-    end
-end
+alias t='tmux new -As main'
