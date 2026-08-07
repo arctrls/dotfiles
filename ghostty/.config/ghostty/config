@@ -24,6 +24,16 @@ link-url = true
 
 
 # keybindings
+# tmux prefix sequences bypass the active macOS input method
+keybind = ctrl+a>c=text:\x01c
+keybind = ctrl+a>ctrl+a=text:\x01\x01
+keybind = ctrl+a>r=text:\x01r
+keybind = ctrl+a>h=text:\x01h
+keybind = ctrl+a>j=text:\x01j
+keybind = ctrl+a>k=text:\x01k
+keybind = ctrl+a>l=text:\x01l
+keybind = ctrl+a>v=text:\x01v
+
 keybind = global:ctrl+shift+q=toggle_quick_terminal
 keybind = cmd+s>r=reload_config
 keybind = cmd+s>x=close_surface
