@@ -44,6 +44,9 @@ alias cl='claude --dangerously-skip-permissions'
 # Separate account credentials; share local conversation storage.
 alias cx='env CODEX_HOME="$HOME/.codex" CODEX_SQLITE_HOME="$HOME/.codex" codex --no-daemon -c cli_auth_credentials_store=\"file\" --dangerously-bypass-approvals-and-sandbox'
 alias cxx='env CODEX_HOME="$HOME/.codex-work" CODEX_SQLITE_HOME="$HOME/.codex" codex --no-daemon -c cli_auth_credentials_store=\"file\" --dangerously-bypass-approvals-and-sandbox'
+# Desktop instances also need separate Electron data directories.
+alias cxd='open -n /Applications/ChatGPT.app --env "CODEX_HOME=$HOME/.codex" --env "CODEX_SQLITE_HOME=$HOME/.codex" --env "CODEX_ELECTRON_USER_DATA_PATH=$HOME/Library/Application Support/Codex" --args "--user-data-dir=$HOME/Library/Application Support/Codex"'
+alias cxxd='open -n /Applications/ChatGPT.app --env "CODEX_HOME=$HOME/.codex-work" --env "CODEX_SQLITE_HOME=$HOME/.codex" --env "CODEX_ELECTRON_USER_DATA_PATH=$HOME/Library/Application Support/Codex-work" --args "--user-data-dir=$HOME/Library/Application Support/Codex-work"'
 alias cat='bat --paging=never'
 alias diff='delta'
 

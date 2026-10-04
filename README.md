@@ -167,8 +167,10 @@ stow -t ~ --adopt nvim
 
 - `cx`: 기존 개인 계정 (`~/.codex/auth.json`)
 - `cxx`: 회사 계정 (`~/.codex-work/auth.json`)
+- `cxd`: 개인 계정 데스크톱 앱 (macOS)
+- `cxxd`: 회사 계정 데스크톱 앱 (macOS)
 
-두 명령은 파일 기반 인증과 `--no-daemon`을 사용합니다. 기존 실행 옵션인
+CLI 두 명령은 파일 기반 인증과 `--no-daemon`을 사용합니다. 기존 실행 옵션인
 `--dangerously-bypass-approvals-and-sandbox`는 유지합니다.
 `CODEX_SQLITE_HOME=~/.codex`로 대화 본문·인덱스를 포함한 SQLite 상태를 공유하고,
 아래 링크로 JSONL 대화 기록과 세션 잠금도 공유합니다.
@@ -202,6 +204,13 @@ tmux의 서로 다른 pane/window에서 `cx`, `cxx`를 실행할 수 있습니�
 `cx resume`과 `cxx resume`은 같은 대화 목록을 조회합니다.
 한 대화를 두 계정에서 동시에 진행하지 말고, 병렬 작업은 별개 대화로 실행하세요.
 이 구성은 로컬 저장소를 공유하며 계정 간 클라우드 동기화를 제공하지 않습니다.
+
+데스크톱 명령은 `/Applications/ChatGPT.app`을 별도 인스턴스로 실행합니다.
+`cxd`는 기존 `~/Library/Application Support/Codex`, `cxxd`는
+`~/Library/Application Support/Codex-work`를 앱 데이터 경로로 사용합니다.
+각각 `cx` / `cxx`와 Codex 인증 저장소를 공유하고, SQLite 저장 위치는
+`~/.codex`로 지정합니다. 앱 자체 웹 로그인은 추가로 필요할 수 있습니다.
+앱 실행 방식은 설치된 버전의 내부 환경변수에 의존합니다.
 
 ## Neovim 메모
 
