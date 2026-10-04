@@ -163,6 +163,46 @@ stow -t ~ --adopt nvim
 - **ghostty**: Ghostty 터미널 설정
 - **local**: `$HOME/.local/bin`에 설치되는 공통 실행 스크립트
 
+## Codex 계정 분리 (fish)
+
+- `cx`: 기존 개인 계정 (`~/.codex/auth.json`)
+- `cxx`: 회사 계정 (`~/.codex-work/auth.json`)
+
+두 명령은 파일 기반 인증과 `--no-daemon`을 사용합니다. 기존 실행 옵션인
+`--dangerously-bypass-approvals-and-sandbox`는 유지합니다.
+`CODEX_SQLITE_HOME=~/.codex`로 대화 본문·인덱스를 포함한 SQLite 상태를 공유하고,
+아래 링크로 JSONL 대화 기록과 세션 잠금도 공유합니다.
+`config.toml`에 별도의 `sqlite_home`을 설정하면 환경변수보다 우선하므로 두 명령의
+저장 위치가 달라지지 않도록 주의하세요.
+
+새 컴퓨터에서는 fish에서 다음 초기 구성을 한 번 실행합니다.
+기존 개인 계정의 `~/.codex`가 있어야 합니다. 링크 대상에 파일이나 디렉터리가
+이미 있으면 `ln`은 실패하며 덮어쓰지 않습니다. 기존 데이터는 직접 확인하세요.
+
+```fish
+mkdir -p -m 700 ~/.codex-work ~/.codex-work/plugins
+mkdir -p ~/.codex/sessions ~/.codex/archived_sessions ~/.codex/thread-writer-locks
+for entry in config.toml AGENTS.md skills prompts sessions archived_sessions thread-writer-locks history.jsonl session_index.jsonl .sqlite-maintenance.lock
+    ln -s "$HOME/.codex/$entry" "$HOME/.codex-work/$entry"
+end
+ln -s "$HOME/.codex/plugins/cache" "$HOME/.codex-work/plugins/cache"
+source ~/.config/omf/init.fish
+cxx login  # 브라우저에서 회사 계정을 선택
+cxx login status
+```
+
+설정·스킬·플러그인 캐시는 공유하지만, `auth.json`, 앱 데이터와 백그라운드 서버
+디렉터리는 공유하지 않습니다. Codex 로그인만 분리하며, 공유 설정에 포함된
+외부 도구 접속 정보는 그대로 사용합니다.
+공유한 `config.toml`을 수정하면 두 계정 모두에 적용됩니다.
+
+tmux의 서로 다른 pane/window에서 `cx`, `cxx`를 실행할 수 있습니다.
+같은 대화를 다른 계정으로 이어 가려면 기존 세션을 종료한 뒤
+`cxx resume <SESSION_ID>` 또는 `cx resume <SESSION_ID>`를 사용하세요.
+`cx resume`과 `cxx resume`은 같은 대화 목록을 조회합니다.
+한 대화를 두 계정에서 동시에 진행하지 말고, 병렬 작업은 별개 대화로 실행하세요.
+이 구성은 로컬 저장소를 공유하며 계정 간 클라우드 동기화를 제공하지 않습니다.
+
 ## Neovim 메모
 
 - 배포판(LazyVim) 없이 직접 관리하는 최소 구성입니다.

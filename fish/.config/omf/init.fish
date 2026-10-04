@@ -41,7 +41,9 @@ alias vim='nvim'
 alias ll='eza --long --git --all'
 alias gitr='git reset --hard HEAD && git clean -fd'
 alias cl='claude --dangerously-skip-permissions'
-alias cx='codex --dangerously-bypass-approvals-and-sandbox'
+# Separate account credentials; share local conversation storage.
+alias cx='env CODEX_HOME="$HOME/.codex" CODEX_SQLITE_HOME="$HOME/.codex" codex --no-daemon -c cli_auth_credentials_store=\"file\" --dangerously-bypass-approvals-and-sandbox'
+alias cxx='env CODEX_HOME="$HOME/.codex-work" CODEX_SQLITE_HOME="$HOME/.codex" codex --no-daemon -c cli_auth_credentials_store=\"file\" --dangerously-bypass-approvals-and-sandbox'
 alias cat='bat --paging=never'
 alias diff='delta'
 
