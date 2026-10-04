@@ -225,6 +225,12 @@ require("cyberdream").setup({
       Type = { fg = idea.type },
       Function = { fg = idea.method },
 
+      -- Review ranges use light backgrounds without overriding syntax colors.
+      ReviewNoteLine = { bg = "#e6f4ff" },
+      ReviewSuggestionLine = { bg = "#edf7ed" },
+      ReviewIssueLine = { bg = "#fff4cc" },
+      ReviewPraiseLine = { bg = "#f1edff" },
+
       -- Tree-sitter highlight overrides live here.
       ["@keyword"] = { fg = idea.fg },
       ["@keyword.conditional"] = { fg = idea.fg },
