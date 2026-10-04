@@ -31,11 +31,26 @@ add("saghen/blink.cmp")
 add("stevearc/conform.nvim")
 
 require("review").setup({
+  keymaps = {
+    popup_submit = "<CR>",
+  },
   export = {
     clipboard = true,
     clear_on_close = false,
   },
 })
+
+-- review.nvim has no popup keymap hook; keep Shift+Enter local to its input buffer.
+local review_popup = require("review.popup")
+local open_review_popup = review_popup.open
+review_popup.open = function(...)
+  local previous_buffer = vim.api.nvim_get_current_buf()
+  open_review_popup(...)
+  local buffer = vim.api.nvim_get_current_buf()
+  if buffer ~= previous_buffer then
+    vim.keymap.set("i", "<S-CR>", "<CR>", { buffer = buffer, desc = "Insert review newline" })
+  end
+end
 
 vim.g.mkdp_auto_start = 0
 vim.g.mkdp_filetypes = { "markdown" }

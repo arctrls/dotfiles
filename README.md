@@ -178,7 +178,7 @@ stow -t ~ --adopt nvim
 
 1. 저장소 안에서 `Space r r` (`:Review`)로 리뷰를 엽니다.
 2. `Tab` / `Shift+Tab`으로 파일을 이동하고, `i`로 현재 줄이나 Visual 선택 범위에 코멘트를 작성합니다.
-3. 코멘트 입력창에서 `Ctrl+s`로 저장합니다.
+3. 코멘트 입력창에서 `Enter`로 저장합니다. 줄바꿈은 `Shift+Enter`를 사용합니다.
 4. `C` 또는 `Space r y`로 모든 파일의 코멘트를 복사한 뒤 Codex 대화에 붙여넣습니다.
 
 기본 화면은 미커밋 변경을 대상으로 하며, Staged·Unstaged·새 파일을 포함합니다.
