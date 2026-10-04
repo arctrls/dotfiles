@@ -6,6 +6,10 @@ vim.g.loaded_netrwPlugin = 1
 add("scottmckendry/cyberdream.nvim")
 add("iamcco/markdown-preview.nvim")
 add("lewis6991/gitsigns.nvim")
+add({
+  source = "georgeguimaraes/review.nvim",
+  depends = { "esmuellert/codediff.nvim", "MunifTanjim/nui.nvim" },
+})
 add("mason-org/mason.nvim")
 add("mason-org/mason-lspconfig.nvim")
 add("neovim/nvim-lspconfig")
@@ -25,6 +29,13 @@ add({
 })
 add("saghen/blink.cmp")
 add("stevearc/conform.nvim")
+
+require("review").setup({
+  export = {
+    clipboard = true,
+    clear_on_close = false,
+  },
+})
 
 vim.g.mkdp_auto_start = 0
 vim.g.mkdp_filetypes = { "markdown" }

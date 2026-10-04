@@ -175,6 +175,25 @@ stow -t ~ --adopt nvim
 - `:Mason`에서 LSP/formatter 설치 상태를 확인할 수 있습니다.
 - 저장 시 자동 포맷이 켜져 있습니다.
 
+### Neovim 코드 리뷰
+
+`codediff.nvim`과 `georgeguimaraes/review.nvim`으로 변경 코드를 읽고,
+여러 파일에 남긴 코멘트를 한 번에 클립보드로 복사할 수 있습니다.
+설정을 적용한 뒤 Neovim을 다시 실행하면 사용할 수 있습니다.
+
+1. 저장소 안에서 `Space r r` (`:Review`)로 리뷰를 엽니다.
+2. `Tab` / `Shift+Tab`으로 파일을 이동하고, `i`로 현재 줄이나 Visual 선택 범위에 코멘트를 작성합니다.
+3. 코멘트 입력창에서 `Ctrl+s`로 저장합니다.
+4. `C` 또는 `Space r y`로 모든 파일의 코멘트를 복사한 뒤 Codex 대화에 붙여넣습니다.
+
+기본 화면은 미커밋 변경을 대상으로 하며, Staged·Unstaged·새 파일을 포함합니다.
+마지막 커밋은 `:Review commits HEAD`, 브랜치 비교는 `:Review branch`로 엽니다.
+복사한 내용에는 파일 경로, 줄 번호·범위, 코멘트가 포함됩니다.
+
+`q`로 닫아도 코멘트는 유지되며 클립보드 복사가 다시 실행됩니다.
+새 리뷰 전에 `:Review clear`로 기존 코멘트를 보관 처리하고 비울 수 있습니다.
+비교 기준과 전체 단축키는 [Neovim 사용법](nvim/.config/nvim/README.md#코드-리뷰)을 참고하세요.
+
 ## Neovim Remote 메모
 
 tmux 안에서 Neovim과 Codex/shell pane을 함께 쓸 때, 기존 Neovim
