@@ -70,7 +70,6 @@ stow -t ~ zsh
 stow -t ~ skhd
 stow -t ~ karabiner
 stow -t ~ ghostty
-stow -t ~ hunk
 stow -t ~ local
 
 # 모든 패키지 적용
@@ -118,12 +117,9 @@ dotfiles/
 ├── karabiner/
 │   └── .config/
 │       └── karabiner/
-├── ghostty/
-│   └── .config/
-│       └── ghostty/
-└── hunk/
+└── ghostty/
     └── .config/
-        └── hunk/
+        └── ghostty/
 ```
 
 ## 새로운 설정 추가
@@ -165,7 +161,6 @@ stow -t ~ --adopt nvim
 - **zsh**: Zsh 및 Oh My Zsh 설정
 - **karabiner**: Karabiner-Elements 설정
 - **ghostty**: Ghostty 터미널 설정
-- **hunk**: Hunk 설정
 - **local**: `$HOME/.local/bin`에 설치되는 공통 실행 스크립트
 
 ## Neovim 메모
