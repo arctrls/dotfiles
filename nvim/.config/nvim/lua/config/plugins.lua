@@ -88,7 +88,6 @@ local treesitter_parsers = {
   "vim",
   "vimdoc",
   "yaml",
-  "zsh",
 }
 
 local treesitter_languages = {
@@ -107,7 +106,6 @@ local treesitter_languages = {
   vim = { "vim" },
   vimdoc = { "help" },
   yaml = { "yaml" },
-  zsh = { "zsh" },
 }
 
 local treesitter = require("nvim-treesitter")
@@ -145,7 +143,6 @@ vim.api.nvim_create_autocmd("FileType", {
     "typescriptreact",
     "vim",
     "yaml",
-    "zsh",
   },
   callback = function(args)
     pcall(vim.treesitter.start, args.buf)

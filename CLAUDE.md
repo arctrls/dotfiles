@@ -12,8 +12,6 @@ dotfiles/
 │   └── .config/
 │       ├── fish/       → ~/.config/fish/
 │       └── omf/        → ~/.config/omf/
-├── zsh/
-│   └── .zshrc          → ~/.zshrc (파일 링크)
 ├── ghostty/
 │   └── .config/
 │       └── ghostty/    → ~/.config/ghostty/ (디렉토리 링크)
@@ -64,7 +62,6 @@ dotfiles/
 
 | 패키지 | 링크 대상 | 링크 타입 |
 |--------|-----------|-----------|
-| zsh | `~/.zshrc` | 파일 |
 | fish | `~/.config/fish/`, `~/.config/omf/` | 디렉토리/파일 |
 | nvim | `~/.config/nvim/` | 디렉토리 |
 | ghostty | `~/.config/ghostty/` | 디렉토리 |

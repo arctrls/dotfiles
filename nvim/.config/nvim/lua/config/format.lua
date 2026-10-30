@@ -42,7 +42,6 @@ conform.setup({
     typescript = { "prettier" },
     typescriptreact = { "prettier" },
     yaml = { "prettier" },
-    zsh = { "shfmt" },
   },
   default_format_opts = {
     lsp_format = "fallback",

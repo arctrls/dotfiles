@@ -38,9 +38,6 @@ brew bundle check --file=~/dotfiles/Brewfile --no-upgrade
 Homebrew 패키지 외에 shell framework는 별도로 설치합니다.
 
 ```bash
-# Oh My Zsh 설치
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
 # Oh My Fish 설치
 curl -L https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install \
   | fish /dev/stdin --path=$HOME/.local/share/omf --config=$HOME/.config/omf
@@ -66,7 +63,6 @@ brew bundle dump --force --file=Brewfile
 # 개별 패키지 적용
 stow -t ~ nvim
 stow -t ~ fish
-stow -t ~ zsh
 stow -t ~ skhd
 stow -t ~ karabiner
 stow -t ~ ghostty
@@ -109,8 +105,6 @@ dotfiles/
 │       └── nvim/
 ├── skhd/
 │   └── .skhdrc
-├── zsh/
-│   └── .zshrc
 ├── local/
 │   └── .local/
 │       └── bin/
@@ -149,7 +143,7 @@ stow -t ~ --adopt nvim
 ## 주의사항
 
 - **충돌 방지**: Stow는 기존 파일이 있으면 충돌을 일으킵니다. 기존 설정은 백업 후 제거하거나 `--adopt` 옵션을 사용하세요.
-- **애플리케이션 설치**: 새로운 머신에서는 해당 애플리케이션들(nvim, fish, skhd, zsh, karabiner, ghostty)이 먼저 설치되어 있어야 합니다.
+- **애플리케이션 설치**: 새로운 머신에서는 해당 애플리케이션들(nvim, fish, skhd, karabiner, ghostty)이 먼저 설치되어 있어야 합니다.
 - **설정 수정**: 설정을 변경할 때는 dotfiles 디렉토리에서 직접 수정하세요. 심볼릭 링크로 연결되어 있어 자동으로 반영됩니다.
 - **포터블 설정**: 모든 경로는 `$HOME` 변수를 사용하여 다른 사용자/시스템에서도 동작합니다.
 
@@ -158,7 +152,6 @@ stow -t ~ --adopt nvim
 - **nvim**: `mini.deps` + Mason + LSP + blink.cmp + conform 기반 Neovim 설정
 - **fish**: fish + Oh My Fish 기반 shell 설정
 - **skhd**: Simple Hotkey Daemon 설정  
-- **zsh**: Zsh 및 Oh My Zsh 설정
 - **karabiner**: Karabiner-Elements 설정
 - **ghostty**: Ghostty 터미널 설정
 - **local**: `$HOME/.local/bin`에 설치되는 공통 실행 스크립트
