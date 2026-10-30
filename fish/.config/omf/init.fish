@@ -36,6 +36,9 @@ if command -q kubectl
     kubectl completion fish | source
 end
 
+# Remove the Kubernetes context from completed command lines.
+set -g fish_transient_prompt 1
+
 alias vi='nvim'
 alias vim='nvim'
 alias ll='eza --long --git --all'

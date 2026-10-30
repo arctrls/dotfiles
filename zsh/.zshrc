@@ -201,3 +201,5 @@ alias cx="codex --high --madmax"
 export HOMEBREW_AUTO_UPDATE_SECS=1
 unset HOMEBREW_NO_AUTO_UPDATE
 export HOMEBREW_NO_ENV_HINTS=1
+
+export PATH="$HOME/.local/bin:$PATH"
