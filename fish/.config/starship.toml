@@ -6,13 +6,67 @@ palette = 'light'
 [aws]
 disabled = true
 
+[bun]
+style = 'red'
+
+[character]
+success_symbol = '[❯](green)'
+error_symbol = '[❯](red)'
+vimcmd_symbol = '[❮](green)'
+vimcmd_visual_symbol = '[❮](yellow)'
+vimcmd_replace_symbol = '[❮](purple)'
+vimcmd_replace_one_symbol = '[❮](purple)'
+
+[cmd_duration]
+style = 'yellow'
+
+[directory]
+style = 'cyan'
+
+[docker_context]
+style = 'blue'
+
 [gcloud]
 disabled = true
+
+[git_branch]
+style = 'purple'
+
+[git_commit]
+style = 'green'
+
+[git_state]
+style = 'yellow'
+
+[git_status]
+style = 'red'
+
+[gradle]
+style = 'bright-cyan'
+
+[jobs]
+style = 'blue'
+
+[kotlin]
+style = 'blue'
 
 [kubernetes]
 disabled = false
 format = '[$context( / $namespace)]($style)'
-style = 'bold purple'
+style = 'purple'
+
+[maven]
+style = 'bright-cyan'
+
+[nodejs]
+style = 'green'
+not_capable_style = 'red'
+
+[package]
+style = '208'
+
+[python]
+style = 'yellow'
 
 [palettes.light]
 black = '#24292e'
