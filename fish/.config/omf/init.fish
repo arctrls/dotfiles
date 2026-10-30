@@ -33,7 +33,17 @@ if command -q fzf
 end
 
 if command -q kubectl
-    kubectl completion fish | source
+    command kubectl completion fish | source
+end
+
+if command -q kubecolor
+    set -gx KUBECOLOR_PRESET light
+
+    function kubectl --wraps kubectl --description 'Colorize kubectl output'
+        command kubecolor $argv
+    end
+
+    complete -c kubecolor -w kubectl
 end
 
 # Remove the Kubernetes context from completed command lines.
