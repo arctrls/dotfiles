@@ -150,7 +150,7 @@ stow -t ~ --adopt nvim
 ## 관리되는 설정
 
 - **nvim**: `mini.deps` + Mason + LSP + blink.cmp + conform 기반 Neovim 설정
-- **fish**: fish + Oh My Fish 기반 shell 설정
+- **fish**: fish + Oh My Fish + Starship 프롬프트 (`~/.config/starship.toml`)
 - **skhd**: Simple Hotkey Daemon 설정  
 - **karabiner**: Karabiner-Elements 설정
 - **ghostty**: Ghostty 터미널 설정

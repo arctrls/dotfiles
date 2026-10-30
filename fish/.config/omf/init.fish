@@ -46,7 +46,7 @@ if command -q kubecolor
     complete -c kubecolor -w kubectl
 end
 
-# Remove the Kubernetes context from completed command lines.
+# Keep completed command lines compact.
 set -g fish_transient_prompt 1
 
 alias vi='nvim'
@@ -64,6 +64,10 @@ alias cat='bat --paging=never'
 alias diff='delta'
 
 if status is-interactive
+    if command -q starship
+        starship init fish | source
+    end
+
     if not set -q TMUX
         if command -q tmux
             if tmux has-session 2>/dev/null

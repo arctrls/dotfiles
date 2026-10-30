@@ -1,0 +1,26 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+right_format = '$kubernetes'
+palette = 'light'
+
+[aws]
+disabled = true
+
+[gcloud]
+disabled = true
+
+[kubernetes]
+disabled = false
+format = '[$context( / $namespace)]($style)'
+style = 'bold purple'
+
+[palettes.light]
+black = '#24292e'
+red = '#b31d28'
+green = '#22863a'
+yellow = '#9a6700'
+blue = '#005cc5'
+purple = '#6f42c1'
+cyan = '#006d77'
+white = '#24292e'
+bright-black = '#57606a'
