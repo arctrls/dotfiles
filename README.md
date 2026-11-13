@@ -249,10 +249,13 @@ tailscale serve status
 접속 가능하며, 인터넷 공개 기능인 Funnel은 사용하지 않습니다. 같은 Tailscale
 계정의 기기는 Ovis가 해당 계정으로 인증합니다.
 
-Ovis relay는 Settings → Phone & devices의 별도 설정입니다. Tailscale Serve를
-설정해도 자동으로 꺼지지 않으며, 기존 릴레이 주소 대신 위 HTTPS 주소로 접속해야
-Tailscale 경로를 사용합니다. Serve 설정을 해제하려면
-`tailscale serve --https=443 off`를 실행합니다.
+Ovis 플러그인의 `env` 설정에서 `HOST=127.0.0.1`, `PORT=7317`,
+`OVIS_TAILSCALE_SERVE_ONLY=1`을 지정합니다. Mac 로컬 접속은 유지하고 원격 접속은
+Tailscale Serve로 제한합니다. 공개 릴레이는 실행할 수 없으며, 기존 릴레이용
+기기 등록과 LAN 직접 연결은 해제했습니다. 플러그인 설정 경로는
+`herdr plugin config-dir devswha.ovis`로 확인할 수 있습니다.
+
+Serve 설정을 해제하려면 `tailscale serve --https=443 off`를 실행합니다.
 
 Ovis의 기기 페어링과 인증 정보는 `~/.config/ovis`에서 관리하며 저장소에
 포함하지 않습니다. 기존 Herdr의 Codex 훅과 계정별 `cx`/`cxx` 실행 설정은

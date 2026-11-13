@@ -1,0 +1,4 @@
+# Remote access is limited to the tailnet through Tailscale Serve.
+HOST=127.0.0.1
+PORT=7317
+OVIS_TAILSCALE_SERVE_ONLY=1
