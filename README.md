@@ -229,6 +229,31 @@ Herdr 서버 재시작 후 에이전트 자동 재개는 끕니다. 기본 복�
 `codex resume` 대신 계정을 명시하는 `cx`/`cxx`로 재개합니다.
 터미널 창을 닫거나 접속만 끊는 경우에는 실행 중인 작업이 계속 유지됩니다.
 
+### Moshi로 휴대폰에서 접속
+
+`Brewfile`의 `mosh`를 설치하고 macOS 시스템 설정 → 일반 → 공유에서 원격
+로그인을 켭니다. 접근 허용 사용자는 본인 계정으로 제한합니다. Moshi는 공식
+설치 스크립트로 설치한 뒤 휴대폰의 Easy Pair에서 QR을 스캔합니다.
+
+```bash
+curl -fsSL https://getmoshi.app/install.sh | sh
+moshi-hook host setup
+env CODEX_HOME="$HOME/.codex" moshi-hook install --target codex
+env CODEX_HOME="$HOME/.codex-work" moshi-hook install --target codex
+```
+
+Codex 훅 설치에서 공유 백그라운드 서버를 끄도록 선택합니다. 각 계정의
+`features.daemon_auto_start = false`는 기존 `cx`/`cxx`의 `--no-daemon` 실행과
+일치하며, Moshi가 세션별 터미널을 구분하게 합니다. 기존 Herdr 훅은 유지합니다.
+훅 변경은 Codex 재실행 후 적용되며, 새 훅의 신뢰 검토는 `/hooks`에서 진행합니다.
+`moshi-hook doctor`로 데몬·페어링·훅 상태를 확인합니다.
+
+휴대폰에서 호스트에 연결한 뒤 Herdr 세션을 선택합니다. 단축키의 Herdr prefix는
+Ctrl+A로 맞춥니다. Settings → Agents → Chat View의 Show as Chat을 켜고 툴바의
+Codex 아이콘을 누르면 채팅 형태로 볼 수 있습니다. Chat View는 Pro 또는 무료
+체험 횟수가 필요합니다. LAN 주소로 등록했다면 같은 네트워크에서 접속합니다.
+페어링 정보와 SSH 키, 계정별 훅 설정은 저장소에 포함하지 않습니다.
+
 2026-11-13 전환 전 설정과 복원 도구는 다음 위치에 보관했습니다.
 
 ```bash
