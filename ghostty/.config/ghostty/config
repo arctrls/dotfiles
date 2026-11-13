@@ -24,7 +24,7 @@ link-url = true
 
 
 # keybindings
-# Physical keys ensure tmux prefix sequences bypass the active macOS input method
+# Physical keys keep Herdr/tmux prefix sequences working with the Korean IME.
 keybind = ctrl+key_a>key_c=text:\x01c
 keybind = ctrl+key_a>ctrl+key_a=text:\x01\x01
 keybind = ctrl+key_a>key_r=text:\x01r
@@ -33,6 +33,17 @@ keybind = ctrl+key_a>key_j=text:\x01j
 keybind = ctrl+key_a>key_k=text:\x01k
 keybind = ctrl+key_a>key_l=text:\x01l
 keybind = ctrl+key_a>key_v=text:\x01v
+keybind = ctrl+key_a>key_n=text:\x01n
+keybind = ctrl+key_a>key_p=text:\x01p
+keybind = ctrl+key_a>key_d=text:\x01d
+keybind = ctrl+key_a>key_m=text:\x01m
+keybind = ctrl+key_a>minus=text:\x01-
+keybind = ctrl+key_a>shift+backslash=text:\x01|
+keybind = ctrl+key_a>shift+key_h=text:\x01H
+keybind = ctrl+key_a>shift+key_j=text:\x01J
+keybind = ctrl+key_a>shift+key_k=text:\x01K
+keybind = ctrl+key_a>shift+key_l=text:\x01L
+keybind = ctrl+key_a>shift+key_r=text:\x01R
 
 keybind = global:ctrl+shift+q=toggle_quick_terminal
 keybind = cmd+s>r=reload_config

@@ -68,13 +68,5 @@ if status is-interactive
         starship init fish | source
     end
 
-    if not set -q TMUX
-        if command -q tmux
-            if tmux has-session 2>/dev/null
-                exec tmux attach
-            else
-                exec tmux new
-            end
-        end
-    end
+    __start_multiplexer
 end

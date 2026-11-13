@@ -66,6 +66,7 @@ stow -t ~ fish
 stow -t ~ skhd
 stow -t ~ karabiner
 stow -t ~ ghostty
+stow --no-folding -t ~ herdr
 stow -t ~ local
 
 # 모든 패키지 적용
@@ -154,7 +155,66 @@ stow -t ~ --adopt nvim
 - **skhd**: Simple Hotkey Daemon 설정  
 - **karabiner**: Karabiner-Elements 설정
 - **ghostty**: Ghostty 터미널 설정
+- **herdr**: 코딩 에이전트용 기본 터미널 세션과 tmux 호환 단축키
 - **local**: `$HOME/.local/bin`에 설치되는 공통 실행 스크립트
+
+## Herdr 터미널 세션
+
+Homebrew의 `herdr`를 사용합니다. 설정 파일만 링크하고 로그와 세션 상태는 홈에
+남기도록 `stow --no-folding -t ~ herdr`로 적용합니다.
+새 대화형 fish는 Herdr에 자동 접속합니다. tmux 또는 Herdr 안에서 실행한 셸은
+중첩 접속하지 않으며, Herdr가 없으면 기존 tmux로 접속합니다.
+
+prefix는 기존과 같은 **Ctrl+A**입니다. prefix를 누른 뒤 다음 키를 누릅니다.
+
+| 키 | 동작 |
+|---|---|
+| `c` | 현재 디렉터리에 새 탭 생성 |
+| `n` / `p` / `1`–`9` | 다음 / 이전 / 번호로 탭 이동 |
+| `,` | 탭 이름 변경 |
+| `h` / `j` / `k` / `l` | 왼쪽 / 아래 / 위 / 오른쪽 pane 이동 |
+| `\|` / `-` | 좌우 / 상하 분할 |
+| `H` / `J` / `K` / `L` | pane 크기 변경 |
+| `m` | 현재 pane 확대·복원 |
+| `v` | 복사 모드 (`v`로 선택, `y`로 복사, `Esc`로 취소) |
+| `r` | 설정 다시 읽기 |
+| `R` | 연속 크기 조절 모드 (`h/j/k/l`, 종료는 `Esc`) |
+| `d` | 접속만 종료하고 실행 중인 작업 유지 |
+| `w` / `g` / `b` / `?` | 워크스페이스 / 에이전트 목록 / 사이드바 / 도움말 |
+
+`Ctrl+A`를 두 번 누르면 내부 프로그램에 Ctrl+A를 보냅니다.
+tmux의 `-r` 반복 입력과 달리 `H/J/K/L`은 매번 prefix가 필요합니다.
+여러 번 크기를 바꿀 때는 `Ctrl+A → R` 모드를 사용합니다.
+Neovim의 `Ctrl+h/j/k/l`은 내부 창을 먼저 이동하고, 가장자리에서 Herdr pane으로
+이동합니다. tmux 안의 Neovim은 기존 `vim-tmux-navigator`를 사용합니다.
+Ghostty의 기존 `Cmd+S` 단축키는 유지합니다.
+
+Codex의 세션 식별·복구 연동은 Homebrew로 설치한 Herdr에서 제공합니다.
+각 계정의 설정을 먼저 백업한 뒤 다음 명령으로 설치합니다.
+
+```bash
+herdr integration install codex
+CODEX_HOME="$HOME/.codex-work" herdr integration install codex
+```
+
+전환 전에 실행하던 tmux 세션은 그대로 남습니다. `tmux attach`로 다시 접속할 수
+있으며, Codex 대화를 Herdr로 옮길 때는 기존 실행을 종료한 뒤 Herdr 안에서
+`cx resume <SESSION_ID>` 또는 `cxx resume <SESSION_ID>`로 이어갑니다.
+같은 대화를 양쪽에서 동시에 실행하지 않습니다.
+Herdr 서버 재시작 후 에이전트 자동 재개는 끕니다. 기본 복구 명령인
+`codex resume` 대신 계정을 명시하는 `cx`/`cxx`로 재개합니다.
+터미널 창을 닫거나 접속만 끊는 경우에는 실행 중인 작업이 계속 유지됩니다.
+
+2026-11-13 전환 전 설정과 복원 도구는 다음 위치에 보관했습니다.
+
+```bash
+python3 ~/.local/state/dotfiles-backups/herdr-20261113-114835/restore.py --check
+python3 ~/.local/state/dotfiles-backups/herdr-20261113-114835/restore.py --apply
+```
+
+복원 도구는 전환 후 추가 변경을 발견하면 덮어쓰지 않고 중단합니다. 설정만
+되돌리며 실행 중인 세션과 Homebrew 패키지는 유지합니다. 복원 후 새 터미널은
+다시 tmux를 사용합니다. Ghostty 설정은 `Cmd+S → r`로 다시 읽을 수 있습니다.
 
 ## Codex 계정 분리 (fish)
 

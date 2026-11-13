@@ -19,6 +19,7 @@ add("ibhagwan/fzf-lua")
 add("folke/trouble.nvim")
 add("stevearc/aerial.nvim")
 add("christoomey/vim-tmux-navigator")
+require("config.herdr_navigation").setup()
 add({
   source = "nvim-treesitter/nvim-treesitter",
   hooks = {

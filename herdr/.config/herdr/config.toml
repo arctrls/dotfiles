@@ -1,0 +1,51 @@
+# tmux에서 사용하던 키를 유지합니다. tmux 설정은 롤백용으로 보존합니다.
+onboarding = false
+
+[theme]
+name = "catppuccin-latte"
+
+[terminal]
+default_shell = "fish"
+shell_mode = "login"
+new_cwd = "follow"
+kitty_graphics = true
+
+[keys]
+prefix = "ctrl+a"
+new_tab = "prefix+c"
+next_tab = "prefix+n"
+previous_tab = "prefix+p"
+switch_tab = "prefix+1..9"
+rename_tab = "prefix+comma"
+detach = "prefix+d"
+reload_config = "prefix+r"
+focus_pane_left = "prefix+h"
+focus_pane_down = "prefix+j"
+focus_pane_up = "prefix+k"
+focus_pane_right = "prefix+l"
+split_vertical = "prefix+|"
+split_horizontal = "prefix+minus"
+zoom = "prefix+m"
+copy_mode = "prefix+v"
+resize_mode = "prefix+shift+r"
+resize_pane_left = "prefix+shift+h"
+resize_pane_down = "prefix+shift+j"
+resize_pane_up = "prefix+shift+k"
+resize_pane_right = "prefix+shift+l"
+# 기본 swap 키와 resize 키가 겹치지 않도록 이동합니다.
+swap_pane_left = "prefix+alt+h"
+swap_pane_down = "prefix+alt+j"
+swap_pane_up = "prefix+alt+k"
+swap_pane_right = "prefix+alt+l"
+
+[ui]
+copy_on_select = false
+prompt_new_tab_name = false
+tab_bar_position = "top"
+
+[session]
+# cx/cxx의 계정별 환경을 유지하도록 서버 재시작 후에는 명시적으로 resume합니다.
+resume_agents_on_restore = false
+
+[advanced]
+scrollback_limit_bytes = 10000000
