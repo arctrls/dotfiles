@@ -168,6 +168,21 @@ Herdr를 시작할 때와 Herdr 안의 대화형 셸에서는 `NO_COLOR`를 제�
 자동화 도구에서 시작한 서버의 환경이 상속되어 색상이 비활성화되는 것을
 방지합니다. 이미 실행 중인 프로그램에는 재실행 후 적용됩니다.
 
+탭 이름은 로컬 `local.directory-titles` 플러그인으로 자동 갱신합니다.
+프로그램 실행 여부와 관계없이 선택한 pane의 현재 디렉터리를 `1:dotfiles`처럼
+표시하고, 직접 지정한 탭 이름은 유지합니다. Python 3을 사용하며, 소스도
+`stow --no-folding -t ~ herdr`로 적용합니다. 새 머신에서는 다음 명령으로
+플러그인을 연결하고 시작합니다.
+
+```bash
+herdr plugin link "$HOME/.config/herdr/local-plugins/directory-titles"
+herdr plugin action invoke local.directory-titles.start
+```
+
+서버 시작 시 자동 실행되며, 탭·pane 이동 이벤트 또는 10초 주기로 디렉터리를
+확인합니다. 중지하려면 `herdr plugin action invoke local.directory-titles.stop`을
+실행합니다. 이전 `aarsh21.tab-title` 플러그인은 비활성화해 이름 갱신 충돌을 막습니다.
+
 prefix는 기존과 같은 **Ctrl+A**입니다. prefix를 누른 뒤 다음 키를 누릅니다.
 
 | 키 | 동작 |

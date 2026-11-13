@@ -1,0 +1,61 @@
+id = "local.directory-titles"
+name = "Directory Tab Titles"
+version = "0.1.0"
+min_herdr_version = "0.9.5"
+description = "Tab numbers and current directory names, preserving manual labels"
+platforms = ["macos", "linux"]
+
+[[startup]]
+command = ["python3", "titles.py", "watch"]
+
+[[actions]]
+id = "start"
+title = "Start directory tab titles"
+contexts = ["workspace"]
+command = ["python3", "titles.py", "watch"]
+
+[[actions]]
+id = "stop"
+title = "Stop directory tab titles"
+contexts = ["workspace"]
+command = ["python3", "titles.py", "stop"]
+
+[[actions]]
+id = "sync"
+title = "Sync directory tab titles"
+contexts = ["workspace"]
+command = ["python3", "titles.py", "sync"]
+
+[[actions]]
+id = "status"
+title = "Show directory tab title status"
+contexts = ["workspace"]
+command = ["python3", "titles.py", "status"]
+
+[[events]]
+on = "tab.created"
+command = ["python3", "titles.py", "sync"]
+
+[[events]]
+on = "tab.moved"
+command = ["python3", "titles.py", "sync"]
+
+[[events]]
+on = "tab.focused"
+command = ["python3", "titles.py", "sync"]
+
+[[events]]
+on = "pane.focused"
+command = ["python3", "titles.py", "sync"]
+
+[[events]]
+on = "pane.moved"
+command = ["python3", "titles.py", "sync"]
+
+[[events]]
+on = "pane.exited"
+command = ["python3", "titles.py", "sync"]
+
+[[events]]
+on = "workspace.focused"
+command = ["python3", "titles.py", "sync"]
