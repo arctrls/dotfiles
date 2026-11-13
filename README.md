@@ -164,6 +164,9 @@ Homebrew의 `herdr`를 사용합니다. 설정 파일만 링크하고 로그와 
 남기도록 `stow --no-folding -t ~ herdr`로 적용합니다.
 새 대화형 fish는 Herdr에 자동 접속합니다. tmux 또는 Herdr 안에서 실행한 셸은
 중첩 접속하지 않으며, Herdr가 없으면 기존 tmux로 접속합니다.
+Herdr를 시작할 때와 Herdr 안의 대화형 셸에서는 `NO_COLOR`를 제거합니다.
+자동화 도구에서 시작한 서버의 환경이 상속되어 색상이 비활성화되는 것을
+방지합니다. 이미 실행 중인 프로그램에는 재실행 후 적용됩니다.
 
 prefix는 기존과 같은 **Ctrl+A**입니다. prefix를 누른 뒤 다음 키를 누릅니다.
 
@@ -188,6 +191,12 @@ tmux의 `-r` 반복 입력과 달리 `H/J/K/L`은 매번 prefix가 필요합니�
 Neovim의 `Ctrl+h/j/k/l`은 내부 창을 먼저 이동하고, 가장자리에서 Herdr pane으로
 이동합니다. tmux 안의 Neovim은 기존 `vim-tmux-navigator`를 사용합니다.
 Ghostty의 기존 `Cmd+S` 단축키는 유지합니다.
+로컬 Ghostty → Herdr의 Codex에서는 텍스트·URL·이미지를 모두 `Cmd+V`로 붙여넣습니다.
+Ghostty가 텍스트를 먼저 처리하고, 텍스트가 없는 이미지 클립보드에서는 Herdr가
+현재 에이전트에 `Ctrl+V`를 전달합니다. Alfred에서 선택한 이미지도 같은 방식입니다.
+`Ctrl+V`로 직접 이미지를 첨부하는 기본 동작도 사용할 수 있습니다.
+이미지 첨부는 `[Image #1]`처럼 표시되며, Enter를 누르기 전에는 전송하지 않습니다.
+변경한 설정은 Ghostty의 `Cmd+S → r`, Herdr의 `Ctrl+A → r` 순서로 다시 읽습니다.
 
 Codex의 세션 식별·복구 연동은 Homebrew로 설치한 Herdr에서 제공합니다.
 각 계정의 설정을 먼저 백업한 뒤 다음 명령으로 설치합니다.

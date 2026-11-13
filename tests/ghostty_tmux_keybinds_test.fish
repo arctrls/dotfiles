@@ -5,6 +5,8 @@ set -l ghostty_config "$repo_root/ghostty/.config/ghostty/config"
 set -l config_contents (string collect <"$ghostty_config")
 
 for expected in \
+        'keybind = performable:cmd+v=paste_from_clipboard' \
+        'keybind = performable:cmd+key_v=paste_from_clipboard' \
         'keybind = ctrl+key_a>key_c=text:\x01c' \
         'keybind = ctrl+key_a>ctrl+key_a=text:\x01\x01' \
         'keybind = ctrl+key_a>key_r=text:\x01r' \

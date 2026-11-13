@@ -38,6 +38,12 @@ swap_pane_down = "prefix+alt+j"
 swap_pane_up = "prefix+alt+k"
 swap_pane_right = "prefix+alt+l"
 
+[[keys.command]]
+key = "cmd+v"
+type = "shell"
+command = '"$HERDR_BIN_PATH" agent send-keys "$HERDR_ACTIVE_PANE_ID" ctrl+v'
+description = "paste clipboard image into agent"
+
 [ui]
 copy_on_select = false
 prompt_new_tab_name = false

@@ -24,6 +24,9 @@ link-url = true
 
 
 # keybindings
+# Paste text normally; forward Cmd+V to Herdr when the clipboard has no text.
+keybind = performable:cmd+v=paste_from_clipboard
+keybind = performable:cmd+key_v=paste_from_clipboard
 # Physical keys keep Herdr/tmux prefix sequences working with the Korean IME.
 keybind = ctrl+key_a>key_c=text:\x01c
 keybind = ctrl+key_a>ctrl+key_a=text:\x01\x01
