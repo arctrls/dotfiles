@@ -53,5 +53,9 @@ tab_bar_position = "top"
 # cx/cxx의 계정별 환경을 유지하도록 서버 재시작 후에는 명시적으로 resume합니다.
 resume_agents_on_restore = false
 
+[experimental]
+# prefix 명령 중에는 영문 입력으로 전환하고, 끝나면 기존 입력 소스를 복원합니다.
+switch_ascii_input_source_in_prefix = true
+
 [advanced]
 scrollback_limit_bytes = 10000000
