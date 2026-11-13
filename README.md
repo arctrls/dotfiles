@@ -236,9 +236,23 @@ Herdr 서버 재시작 후 에이전트 자동 재개는 끕니다. 기본 복�
 
 [Ovis](https://ovis.sh/)의 Herdr 플러그인 `devswha.ovis`를 사용합니다.
 플러그인은 Herdr 시작 시 Ovis 서버를 실행하며, Mac에서는
-`http://127.0.0.1:7317`로 접속합니다. 휴대폰 연결은 Ovis의
-Settings → Phone & devices에서 설정합니다. 외부 접속에는 Ovis relay나
-기존 Tailscale 네트워크를 사용할 수 있습니다.
+`http://127.0.0.1:7317`로 접속합니다. 휴대폰에서 Tailscale을 통한 직접 접속은
+Mac에서 다음과 같이 설정합니다.
+
+```bash
+tailscale serve --bg --https=443 http://127.0.0.1:7317
+tailscale serve status
+```
+
+최초 실행 시 Tailscale 계정의 HTTPS 활성화가 필요합니다. 출력된 `https://...ts.net`
+주소를 휴대폰에서 Tailscale을 켠 상태로 엽니다. 이 주소는 tailnet 내부에서만
+접속 가능하며, 인터넷 공개 기능인 Funnel은 사용하지 않습니다. 같은 Tailscale
+계정의 기기는 Ovis가 해당 계정으로 인증합니다.
+
+Ovis relay는 Settings → Phone & devices의 별도 설정입니다. Tailscale Serve를
+설정해도 자동으로 꺼지지 않으며, 기존 릴레이 주소 대신 위 HTTPS 주소로 접속해야
+Tailscale 경로를 사용합니다. Serve 설정을 해제하려면
+`tailscale serve --https=443 off`를 실행합니다.
 
 Ovis의 기기 페어링과 인증 정보는 `~/.config/ovis`에서 관리하며 저장소에
 포함하지 않습니다. 기존 Herdr의 Codex 훅과 계정별 `cx`/`cxx` 실행 설정은
