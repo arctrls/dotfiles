@@ -31,20 +31,23 @@ class DirectoryTitlesTest(unittest.TestCase):
         panes = [{'tab_id': 'w1:t1', 'pane_id': 'w1:p1', 'agent': 'codex',
                   'cwd': '/work/repo', 'foreground_cwd': '/work/repo/src'}]
         changes, state = titles.plan_labels(tabs, panes, {'w1:t1': '1:codex'}, {})
-        self.assertEqual(changes, [('w1:t1', '1  src > codex')])
-        self.assertEqual(state, {'w1:t1': '1  src > codex'})
-        tabs[0]['label'] = '1  src > codex'
+        self.assertEqual(changes, [('w1:t1', '1  src')])
+        self.assertEqual(state, {'w1:t1': '1  src'})
+        tabs[0]['label'] = '1  src'
         panes[0]['foreground_cwd'] = '/work/repo/tests'
         self.assertEqual(titles.plan_labels(tabs, panes, state, {})[0],
-                         [('w1:t1', '1  tests > codex')])
+                         [('w1:t1', '1  tests')])
 
-    def test_agent_exit_removes_agent_suffix(self):
+    def test_existing_agent_suffix_is_removed(self):
         label = '1  repo > codex'
         tabs = [{'tab_id': 'w1:t1', 'workspace_id': 'w1', 'label': label}]
         panes = [{'tab_id': 'w1:t1', 'pane_id': 'w1:p1',
                   'cwd': '/work/repo', 'agent': None}]
-        self.assertEqual(titles.plan_labels(tabs, panes, {'w1:t1': label}, {})[0],
-                         [('w1:t1', '1  repo')])
+        for agent in ('codex', None):
+            with self.subTest(agent=agent):
+                panes[0]['agent'] = agent
+                self.assertEqual(titles.plan_labels(tabs, panes, {'w1:t1': label}, {})[0],
+                                 [('w1:t1', '1  repo')])
 
     def test_manual_name_is_preserved(self):
         tabs = [{'tab_id': 'w1:t1', 'workspace_id': 'w1', 'label': 'review'}]
@@ -93,9 +96,9 @@ class DirectoryTitlesTest(unittest.TestCase):
             state = Path(directory)
             titles.sync(state)
             titles.sync(state)
-            self.assertEqual(renamed, [('tab', 'rename', 'w1:t1', '1  repo > codex')])
+            self.assertEqual(renamed, [('tab', 'rename', 'w1:t1', '1  repo')])
             self.assertEqual(json.loads((state / 'labels.json').read_text()),
-                             {'labels': {'w1:t1': '1  repo > codex'}})
+                             {'labels': {'w1:t1': '1  repo'}})
 
 
 if __name__ == '__main__':

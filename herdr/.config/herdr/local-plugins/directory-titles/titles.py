@@ -1,4 +1,4 @@
-"""Show the selected pane's directory and agent in Herdr's automatic tab labels."""
+"""Show the selected pane's directory in Herdr's automatic tab labels."""
 
 from collections import defaultdict
 import fcntl
@@ -36,8 +36,6 @@ def plan_labels(tabs, panes, previous, focused_by_tab):
         name = Path(cwd).name or '/'
         name = ''.join(char for char in name if char.isprintable())[:80]
         desired = f"{numbers[tab['workspace_id']]}  {name}"
-        if agent := pane.get('agent'):
-            desired += ' > ' + ''.join(char for char in agent if char.isprintable())[:80]
         managed[tab_id] = desired
         if desired != label:
             changes.append((tab_id, desired))
