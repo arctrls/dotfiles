@@ -31,12 +31,20 @@ class DirectoryTitlesTest(unittest.TestCase):
         panes = [{'tab_id': 'w1:t1', 'pane_id': 'w1:p1', 'agent': 'codex',
                   'cwd': '/work/repo', 'foreground_cwd': '/work/repo/src'}]
         changes, state = titles.plan_labels(tabs, panes, {'w1:t1': '1:codex'}, {})
-        self.assertEqual(changes, [('w1:t1', '1:src')])
-        self.assertEqual(state, {'w1:t1': '1:src'})
-        tabs[0]['label'] = '1:src'
+        self.assertEqual(changes, [('w1:t1', '1  src > codex')])
+        self.assertEqual(state, {'w1:t1': '1  src > codex'})
+        tabs[0]['label'] = '1  src > codex'
         panes[0]['foreground_cwd'] = '/work/repo/tests'
         self.assertEqual(titles.plan_labels(tabs, panes, state, {})[0],
-                         [('w1:t1', '1:tests')])
+                         [('w1:t1', '1  tests > codex')])
+
+    def test_agent_exit_removes_agent_suffix(self):
+        label = '1  repo > codex'
+        tabs = [{'tab_id': 'w1:t1', 'workspace_id': 'w1', 'label': label}]
+        panes = [{'tab_id': 'w1:t1', 'pane_id': 'w1:p1',
+                  'cwd': '/work/repo', 'agent': None}]
+        self.assertEqual(titles.plan_labels(tabs, panes, {'w1:t1': label}, {})[0],
+                         [('w1:t1', '1  repo')])
 
     def test_manual_name_is_preserved(self):
         tabs = [{'tab_id': 'w1:t1', 'workspace_id': 'w1', 'label': 'review'}]
@@ -54,14 +62,14 @@ class DirectoryTitlesTest(unittest.TestCase):
                  {'tab_id': 'w2:t1', 'pane_id': 'w2:p1', 'cwd': '/work/other'}]
         changes, state = titles.plan_labels(tabs, panes, {'closed': '1:old'},
                                             {'w1:t7': 'w1:p2'})
-        self.assertEqual(changes, [('w1:t7', '1:selected'), ('w1:t2', '2:second'),
-                                   ('w2:t1', '1:other')])
+        self.assertEqual(changes, [('w1:t7', '1  selected'), ('w1:t2', '2  second'),
+                                   ('w2:t1', '1  other')])
         self.assertNotIn('closed', state)
 
     def test_unchanged_name_does_not_trigger_rename(self):
-        tabs = [{'tab_id': 'w1:t1', 'workspace_id': 'w1', 'label': '1:repo'}]
+        tabs = [{'tab_id': 'w1:t1', 'workspace_id': 'w1', 'label': '1  repo'}]
         panes = [{'tab_id': 'w1:t1', 'pane_id': 'w1:p1', 'cwd': '/work/repo'}]
-        self.assertEqual(titles.plan_labels(tabs, panes, {'w1:t1': '1:repo'}, {})[0], [])
+        self.assertEqual(titles.plan_labels(tabs, panes, {'w1:t1': '1  repo'}, {})[0], [])
 
     def test_sync_persists_ownership_and_does_not_rename_twice(self):
         tab = {'tab_id': 'w1:t1', 'workspace_id': 'w1', 'label': '1'}
@@ -85,9 +93,9 @@ class DirectoryTitlesTest(unittest.TestCase):
             state = Path(directory)
             titles.sync(state)
             titles.sync(state)
-            self.assertEqual(renamed, [('tab', 'rename', 'w1:t1', '1:repo')])
+            self.assertEqual(renamed, [('tab', 'rename', 'w1:t1', '1  repo > codex')])
             self.assertEqual(json.loads((state / 'labels.json').read_text()),
-                             {'labels': {'w1:t1': '1:repo'}})
+                             {'labels': {'w1:t1': '1  repo > codex'}})
 
 
 if __name__ == '__main__':
