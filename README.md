@@ -185,6 +185,10 @@ herdr plugin action invoke local.directory-titles.start
 실행합니다. 이전 `aarsh21.tab-title` 플러그인은 비활성화해 이름 갱신 충돌을 막습니다.
 
 prefix는 기존과 같은 **Ctrl+A**입니다. prefix를 누른 뒤 다음 키를 누릅니다.
+Ghostty에서는 한글 입력 중에도 명령이 전달되도록 prefix와 명령 키를 물리 키로
+받아 ASCII 시퀀스로 보냅니다. 문자 키, 번호 탭 이동, 탭 이름 변경, 도움말과
+`Alt+h/j/k/l` pane 교환에 적용됩니다. Ghostty가 두 번째 키까지 기다린 뒤
+prefix를 보내므로, Herdr 단축키를 추가할 때는 Ghostty의 대응 바인딩도 추가합니다.
 Mac에서는 prefix 명령 중 영문 입력으로 자동 전환하고, 일반 입력으로 돌아오면
 이전 입력 소스를 복원합니다 (`experimental.switch_ascii_input_source_in_prefix`).
 휴대폰에서 원격 접속할 때 휴대폰 키보드의 언어에는 적용되지 않습니다.
