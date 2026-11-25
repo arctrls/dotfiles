@@ -81,6 +81,7 @@ vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "Toggle fil
 
 vim.keymap.set("n", "<leader>rr", "<cmd>Review<cr>", { desc = "Review git changes" })
 vim.keymap.set("n", "<leader>ry", "<cmd>Review export<cr>", { desc = "Copy all review comments" })
+vim.keymap.set("n", "<leader>rc", "<cmd>Review clear<cr>", { desc = "Clear review comments" })
 
 vim.keymap.set("n", "<leader>,", function()
   require("fzf-lua").buffers()
