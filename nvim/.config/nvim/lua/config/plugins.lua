@@ -31,6 +31,12 @@ add({
 add("saghen/blink.cmp")
 add("stevearc/conform.nvim")
 
+require("codediff").setup({
+  diff = {
+    compact = true,
+  },
+})
+
 require("review").setup({
   keymaps = {
     popup_submit = "<CR>",
