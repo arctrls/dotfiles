@@ -362,6 +362,7 @@ tmux의 서로 다른 pane/window에서 `cx`, `cxx`를 실행할 수 있습니�
 4. `C` 또는 `Space r y`로 모든 파일의 코멘트를 복사한 뒤 Codex 대화에 붙여넣습니다.
 
 기본 화면은 미커밋 변경을 대상으로 하며, Staged·Unstaged·새 파일을 포함합니다.
+`Space r m`은 `origin/main`과 현재 브랜치의 공통 조상 이후 변경을 미커밋 변경까지 포함해 보여줍니다.
 마지막 커밋은 `:Review commits HEAD`, 브랜치 비교는 `:Review branch`로 엽니다.
 복사한 내용에는 파일 경로, 줄 번호·범위, 코멘트가 포함됩니다.
 

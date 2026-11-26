@@ -80,6 +80,10 @@ end, { desc = "Toggle git diff current file" })
 vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "Toggle file tree" })
 
 vim.keymap.set("n", "<leader>rr", "<cmd>Review<cr>", { desc = "Review git changes" })
+vim.keymap.set("n", "<leader>rm", function()
+  local branch = vim.fn.systemlist({ "git", "rev-parse", "--abbrev-ref", "HEAD" })[1]
+  require("review").open_branch(branch, "origin/main")
+end, { desc = "Review branch against origin/main" })
 vim.keymap.set("n", "<leader>ry", "<cmd>Review export<cr>", { desc = "Copy all review comments" })
 vim.keymap.set("n", "<leader>rc", "<cmd>Review clear<cr>", { desc = "Clear review comments" })
 
