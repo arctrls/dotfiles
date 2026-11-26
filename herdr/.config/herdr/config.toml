@@ -39,7 +39,8 @@ swap_pane_up = "prefix+alt+k"
 swap_pane_right = "prefix+alt+l"
 
 [[keys.command]]
-key = "cmd+v"
+# 이미지 클립보드는 Ghostty를 통과하며, 한글 두벌식에서는 Cmd+ㅍ로 전달됩니다.
+key = ["cmd+v", "cmd+ㅍ"]
 type = "shell"
 command = '"$HERDR_BIN_PATH" agent send-keys "$HERDR_ACTIVE_PANE_ID" ctrl+v'
 description = "paste clipboard image into agent"
